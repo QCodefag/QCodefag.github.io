@@ -1,0 +1,86 @@
+html {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  line-height: 1.15;
+  font-size: 14px;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+article {
+  position: relative;
+  border-radius: 6px;
+  background-color: hsl(0, 0%, 95%);
+  padding: 10px;
+  margin: 5px 0 5px 30px;
+  width: 400px;
+}
+
+.text {
+  max-width: 100%;
+  white-space: pre-line;
+}
+
+time {
+  font-size: smaller;
+  color: hsl(0, 0%, 50%);
+}
+
+img {
+  max-width: 100%;
+}
+
+blockquote {
+  margin: 0 0 10px;
+  padding: 10px;
+  border: 1px solid grey;
+}
+
+q {
+  color: green;
+}
+
+.counter {
+  position: absolute;
+  left: -30px;
+}
+img.contain {
+  object-fit: contain;
+  background: hsl(0, 0%, 95%);
+  margin-right: 20px;
+}
+.source_4chan_pol_anon {
+  border-left: 2px solid hsl(12, 48%, 59%);
+}
+.source_4chan_pol {
+  border-left: 2px solid hsl(136, 43%, 74%);
+}
+.source_8chan_pol {
+  border-left: 2px solid hsl(254, 100%, 83%);
+}
+.source_8chan_cbts {
+  border-left: 2px solid hsl(198, 100%, 83%);
+}
+.deleted {
+  background-color: hsl(0, 50%, 85%);
+}
+header {
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+header>*{
+  margin-right: 10px;
+  display: inline-block;
+}
+.name {
+  font-weight: bold;
+}
+.email {
+  color: hsl(359, 82%, 36%);
+}
