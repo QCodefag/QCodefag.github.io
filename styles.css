@@ -4,12 +4,46 @@ html {
   line-height: 1.15;
   font-size: 14px;
 }
-
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+body>header {
+  height: 30px;
+  padding: 10px;
+  z-index: 10;
+  background-color: white;
+}
+body>header input[type=search] {
+  padding: 5px 10px;
+  border-radius: 100px;
+  border: 1px solid grey;
+  min-width: 300px;
+}
 main {
+  display: flex;
+}
+
+section {
+  overflow-y: auto;
+  height: calc(100vh - 50px);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
+  width: calc(100% - 400px);
+  justify-content: space-around;
+}
+
+aside {
+  width: 400px;
+  background-color: aliceblue;
+  overflow-y: auto;
+  height: calc(100vh - 50px);
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 article {
@@ -20,10 +54,16 @@ article {
   margin: 5px 0 5px 30px;
   width: 400px;
 }
+article.selected {
+  background-color: hsl(180, 44%, 89%);
+}
 
 .text {
   max-width: 100%;
   white-space: pre-wrap;
+}
+a[target=_blank]::after {
+  content: '→';
 }
 
 time {
@@ -69,12 +109,12 @@ img.contain {
 .deleted {
   background-color: hsl(0, 50%, 85%);
 }
-header {
+article header {
   margin-bottom: 10px;
   display: flex;
   flex-wrap: wrap;
 }
-header>*{
+article header>*{
   margin-right: 10px;
   display: inline-block;
 }
