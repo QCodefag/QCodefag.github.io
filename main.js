@@ -73,16 +73,28 @@ const legend = {
 };
 let posts;
 function main() {
-    polNonTrip4chanPosts.forEach(p => p.source = '4chan_pol_anon');
-    polTrip4chanPosts.forEach(p => p.source = '4chan_pol');
-    polTrip8chanPosts.forEach(p => p.source = '8chan_pol');
-    cbtsTrip8chanPosts.forEach(p => p.source = '8chan_cbts');
+    polNonTrip4chanPosts.forEach(p => {
+        p.source = '4chan_pol_anon';
+        p.link = `https://archive.4plebs.org/pol/thread/${p.threadId}/#${p.postId}`;
+    });
+    polTrip4chanPosts.forEach(p => {
+        p.source = '4chan_pol';
+        p.link = `https://archive.4plebs.org/pol/thread/${p.threadId}/#${p.postId}`;
+    });
+    polTrip8chanPosts.forEach(p => {
+        p.source = '8chan_pol';
+        p.link = `https://8ch.net/pol/res/${p.threadId}.html#${p.postId}`;
+    });
+    cbtsTrip8chanPosts.forEach(p => {
+        p.source = '8chan_cbts';
+        p.link = `https://8ch.net/cbts/res/${p.threadId}.html#${p.postId}`;
+    });
     posts = []
         .concat(polNonTrip4chanPosts)
         .concat(polTrip4chanPosts)
         .concat(polTrip8chanPosts)
-        .concat(cbtsTrip8chanPosts)
-    ;
+        .concat(cbtsTrip8chanPosts);
+
     let counter = 1;
     posts.forEach(p => p.counter = counter++);
     posts.reverse();
@@ -160,10 +172,11 @@ function postToHtmlElement(e) {
         ${referenceToHtmlString(e.reference)}
         <header>
           <time datetime="${date.toISOString()}">${formatDate(date)}</time>${
+            span(e.subject, 'subject')+ 
             span(e.name, 'name')+ 
             span(e.trip, 'trip')+
             span(e.email, 'email')}
-          <span>${e.postId}</span>
+          <a href="${e.link}" target="_blank">${e.postId}</a>
         </header>
         ${img(e.imageUrl)}
         ${extraImages}
@@ -213,7 +226,8 @@ function addHighlights(text) {
 }
 
 function formatDate(date) {
-    return `${date.getDate()}-${date.getMonth() + 1} ${xx(date.getHours())}:${xx(date.getMinutes())}:${xx(date.getSeconds())}`;
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${months[date.getMonth()]} ${date.getDate()}, ${xx(date.getHours())}:${xx(date.getMinutes())}:${xx(date.getSeconds())}`;
 }
 
 function xx(x) {
