@@ -102,9 +102,14 @@ function main() {
     const searchElement = document.querySelector('input[type=search]');
 
     searchElement.oninput = () => {
-        const value = searchElement.value.toLowerCase();
+        const value = searchElement.value;
+        let filter = (text) => text.includes(value);
+        
+        if(value === value.toLowerCase())
+            filter = (text) => text.toLowerCase().includes(value);
+
         const ids = posts
-            .filter(p => p.text && p.text.toLowerCase().includes(value))
+            .filter(p => p.text && filter(p.text))
             .map(p => p.postId);
         applyFilter(ids);
     };
