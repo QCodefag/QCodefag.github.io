@@ -150,7 +150,7 @@ function applyFilter(ids) {
 }
 
 function render(items) {
-    const container = document.querySelector('main');
+    const container = document.querySelector('section');
     container.innerHTML = '';
     for (const item of items) {
         const element = postToHtmlElement(item);
@@ -159,35 +159,67 @@ function render(items) {
     }
 }
 
-function postToHtmlElement(e) {
-    const date = new Date(e.timestamp * 1000);
+function postToHtmlElement(post) {
+    const date = new Date(post.timestamp * 1000);
     const wrapper = document.createElement('div');
-    const deleted = e.timestampDeletion ? 'deleted' : '';
+    const deleted = post.timestampDeletion ? 'deleted' : '';
 
-    const extraImages = e.extraImageUrls ? e.extraImageUrls.map(img).join('') : '';
+    const extraImages = post.extraImageUrls ? post.extraImageUrls.map(img).join('') : '';
 
     wrapper.innerHTML = `
-      <article id="post${e.postId}" class="source_${e.source} ${deleted}">
-        <span class="counter">${e.counter}</span>
-        ${referenceToHtmlString(e.reference)}
+      <article id="post${post.postId}" class="source_${post.source} ${deleted}">
+        ${
+        span(post.counter, 'counter')+
+        referenceToHtmlString(post.reference)+
+        button(answers[post.postId], 'answers', 'button', `selectAnswers(${post.postId})`)  
+    }
         <header>
           <time datetime="${date.toISOString()}">${formatDate(date)}</time>${
-            span(e.subject, 'subject')+ 
-            span(e.name, 'name')+ 
-            span(e.trip, 'trip')+
-            span(e.email, 'email')}
-          <a href="${e.link}" target="_blank">${e.postId}</a>
+            span(post.subject, 'subject')+ 
+            span(post.name, 'name')+ 
+            span(post.trip, 'trip')+
+            span(post.email, 'email')}
+          <a href="${post.link}" target="_blank">${post.postId}</a>
         </header>
-        ${img(e.imageUrl)}
+        ${img(post.imageUrl)}
         ${extraImages}
-        <div class="text">${addHighlights(e.text)}</div>
+        <div class="text">${addHighlights(post.text)}</div>
         </article>`;
-    return wrapper.firstElementChild;
+    const element = wrapper.firstElementChild;
+    element.addEventListener('click', (event) => {
+        if(event.target.classList.contains('text')) {
+            if(answers[post.postId]) {
+                console.log(answers[post.postId]);
+            }
+        }
+    });
+    return element;
 }
 
 function span(content, className) {
     const cls = className ? ` class="${className}"` : '';
     return content ? `<span${cls}>${content}</span>` : '';
+}
+
+function button(check, content, className, onclick) {
+    className = className ? ` class="${className}"` : '';
+    onclick = onclick ? ` onclick="${onclick}"` : '';
+    return check ? `<button${className}${onclick}>${content}</button>` : '';
+}
+
+function selectAnswers(postId) {
+    const oldSelected = document.querySelector(`article.selected`);
+    if(oldSelected) oldSelected.classList.remove('selected');
+    const postElement = document.querySelector(`#post${postId}`);
+    postElement.classList.add('selected');
+    const aside = document.querySelector('aside');
+    const answerList = answers[''+postId].map(l => `<p>${l.answer}</p>`).join('\n');
+    const extraAnswerList = answers[''+postId].map(l => `<p>${l.extraAnswer}</p>`).join('\n');
+    aside.innerHTML = `
+      <h3>Answers for <a href="#post${postId}">${postId}</a></h3>
+      <div>${answerList}</div>
+      <h3>Extra answers</h3>
+      <div>${extraAnswerList}</div>`;
 }
 
 function referenceToHtmlString(e) {
