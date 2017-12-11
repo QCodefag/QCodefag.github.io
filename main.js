@@ -104,7 +104,7 @@ function main() {
     searchElement.oninput = () => {
         const value = searchElement.value;
         let filter = (text) => text.includes(value);
-        
+
         if(value === value.toLowerCase())
             filter = (text) => text.toLowerCase().includes(value);
 
@@ -218,13 +218,13 @@ function selectAnswers(postId) {
     const postElement = document.querySelector(`#post${postId}`);
     postElement.classList.add('selected');
     const aside = document.querySelector('aside');
-    const answerList = answers[''+postId].map(l => `<p>${l.answer}</p>`).join('\n');
-    const extraAnswerList = answers[''+postId].map(l => `<p>${l.extraAnswer}</p>`).join('\n');
+    const answerList = answers[''+postId].map(l => `<dt>${l.line}</dt><dd>${l.answer}</dd>`).join('\n');
+    const extraAnswerList = answers[''+postId].map(l => `<dt>${l.line}</dt><dd>${l.extraAnswer}</dd>`).join('\n');
     aside.innerHTML = `
       <h3>Answers for <a href="#post${postId}">${postId}</a></h3>
-      <div>${answerList}</div>
+      <dl>${answerList}</dl>
       <h3>Extra answers</h3>
-      <div>${extraAnswerList}</div>`;
+      <dl>${extraAnswerList}</dl>`;
 }
 
 function referenceToHtmlString(e) {
