@@ -15,6 +15,7 @@ body>header {
   padding: 10px;
   z-index: 10;
   background-color: white;
+  display: flex;
 }
 body>header input[type=search] {
   padding: 5px 10px;
