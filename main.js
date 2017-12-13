@@ -72,8 +72,12 @@ const legend = {
     'WW': 'World War, and possibly World Wide?'
 };
 let posts = [];
+let statusElement;
+let counter = 1;
 
 function main() {
+    statusElement = document.querySelector('#status');
+
     polNonTrip4chanPosts.forEach(p => {
         p.source = '4chan_pol_anon';
         p.link = `https://archive.4plebs.org/pol/thread/${p.threadId}/#${p.postId}`;
@@ -94,9 +98,9 @@ function main() {
         .concat(polNonTrip4chanPosts)
         .concat(polTrip4chanPosts)
         .concat(polTrip8chanPosts)
-        .concat(cbtsTrip8chanPosts);
+        // .concat(cbtsTrip8chanPosts)
+    ;
 
-    let counter = 1;
     posts.forEach(p => p.counter = counter++);
     posts.reverse();
 
@@ -140,6 +144,8 @@ function main() {
     resultList.sort((a, b) => b.ids.size - a.ids.size);
     const datalist = document.querySelector('#hints');
     datalist.innerHTML = resultList.map(i => `<option label="${i.ids.size}">${i.line}</option>`).join('\n')
+
+    checkForNewPosts();
 }
 
 function applyFilter(ids) {
@@ -191,20 +197,13 @@ function postToHtmlElement(post) {
         }
         </header>
         ${
-        span(post.fileName, post.fileName, {'class': 'filename', 'title': 'file name'})+
-        img(post.imageUrl)+
-        extraImages
+    span(post.fileName, post.fileName, {'class': 'filename', 'title': 'file name'}) +
+    img(post.imageUrl) +
+    extraImages
         }
         <div class="text">${addHighlights(post.text)}</div>
         </article>`;
     const element = wrapper.firstElementChild;
-    element.addEventListener('click', (event) => {
-        if (event.target.classList.contains('text')) {
-            if (answers[post.postId]) {
-                console.log(answers[post.postId]);
-            }
-        }
-    });
     return element;
 }
 
@@ -286,6 +285,127 @@ function formatDate(date) {
 
 function xx(x) {
     return (x < 10 ? '0' : '') + x;
+}
+
+let emptyThreads;
+function checkForNewPosts() {
+    emptyThreads = [];
+    statusElement.textContent = 'fetching new posts...';
+
+    // skip threads that are already parsed in "cbtsTrip8chanPosts.js"
+    const alreadyParsedIds = [
+        86934,52438,106,59853,1,19041,84471,77824,70260,20,86074,83064,82175,56670,77001,79481,78661,80329,71064,55851,57446,71941,75329,65108,76158,68564,64254,66796,61621,30459,60804,58319,49045,43833,23621,21168,15991,21962,67649,65909,41913,42972,18636,53296,33185,47314,62562,31335,39232,40081,28665,24503,1716,48266,27795,29570,25363,26986,14277,26177,19432,20331,32244,41002,17741,15090,36554,22773,35673
+    ];
+
+    const catalogUrl = 'https://8ch.net/cbts/catalog.json';
+
+    getJson(catalogUrl).then(threads => {
+
+        const newThreadIds = threads
+            .reduce((p, e) => p.concat(e['threads']), [])
+            .filter((p) => p['sub'].includes('CBTS'))
+            .map((p) => p['no'])
+            .filter((id) => !alreadyParsedIds.includes(id));
+
+        Promise.all(newThreadIds.map(getPostsByThread)).then(result => {
+            const newPosts = result.reduce((p, e) => p.concat(e), []);
+
+            console.log(`empty threads\n${emptyThreads}`);
+
+            newPosts.sort((a, b) => a['timestamp'] - b['timestamp']);
+            newPosts.forEach(p => p.counter = counter++);
+            newPosts.reverse();
+            posts.unshift(...newPosts);
+            render(posts);
+            statusElement.textContent = '';
+        });
+    });
+}
+
+function getPostsByThread(id) {
+    const threadUrl = (id) => `https://8ch.net/cbts/res/${id}.json`;
+    const referencePattern = />>(\d+)/g;
+
+    return getJson(threadUrl(id)).then(result => {
+        if (!result['posts'].some((p) => p.trip === '!ITPb.qbhqo')) {
+            emptyThreads.push(id);
+            return [];
+        }
+        const threadPosts = result['posts']
+            .map(parse8chanPost);
+
+        const newPosts = threadPosts
+            .filter((p) => p.trip === '!ITPb.qbhqo');
+
+        for (const newPost of newPosts) {
+            newPost.threadId = ''+id;
+            referencePattern.lastIndex = 0;
+            if (referencePattern.test(newPost.text)) {
+                referencePattern.lastIndex = 0;
+                const referenceId = referencePattern.exec(newPost.text)[1];
+                const referencePost = threadPosts.find((p) => p.postId == referenceId);
+                newPost['reference'] = referencePost;
+            }
+            newPost.source = '8chan_cbts';
+            newPost.link = `https://8ch.net/cbts/res/${newPost.threadId}.html#${newPost.postId}`;
+        }
+        console.log(`added ${newPosts.length} thread ${id}`);
+        return newPosts;
+    });
+}
+
+function getJson(url) {
+    return fetch(url).then(response => response.json());
+}
+
+function parse8chanPost(post) {
+    const keyMap = {
+        'no': 'postId',
+        'id': 'userId',
+        'time': 'timestamp',
+        'title': 'title',
+        'name': 'name',
+        'email': 'email',
+        'trip': 'trip',
+        'com': 'text',
+        'sub': 'subject',
+        'tim': 'imageUrl',
+        'extra_files': 'extraImageUrls',
+        'filename': 'fileName',
+    };
+
+    const newPost = {};
+    for (const key of Object.keys(keyMap)) {
+        if (post[key] == null) continue;
+
+        if (key == 'tim')
+            newPost[keyMap[key]] = `https://media.8ch.net/file_store/${post[key]}${post['ext']}`;
+        else if (key == 'extra_files')
+            newPost[keyMap[key]] = post[key].map((e) => `https://media.8ch.net/file_store/${e['tim']}${e['ext']}`);
+        else if (key == 'no')
+            newPost[keyMap[key]] = post[key].toString();
+        else if (key == 'com')
+            newPost[keyMap[key]] = cleanHtmlText(post[key]);
+        else
+            newPost[keyMap[key]] = post[key];
+    }
+    return newPost;
+}
+
+function cleanHtmlText(htmlText) {
+    const emptyPattern = /<p class="body-line empty "><\/p>/g;
+    const referencePattern = /<a [^>]+>&gt;&gt;(\d+)<\/a>/g;
+    const linkPattern = /<a [^>]+>(.+?)<\/a>/g;
+    const quotePattern = /<p class="body-line ltr quote">&gt;(.+?)<\/p>/g;
+    const paragraphPattern = /<p class="body-line ltr ">(.+?)<\/p>/g;
+
+    return htmlText
+        .replace(emptyPattern, '\n')
+        .replace(referencePattern, (m, p1) => `>>${p1}`)
+        .replace(linkPattern, (m, p1) => `${p1}`)
+        .replace(quotePattern, (m, p1) => `>${p1}\n`)
+        .replace(paragraphPattern, (m, p1) => `${p1}\n`)
+        ;
 }
 
 Object.filter = (obj, predicate) =>
