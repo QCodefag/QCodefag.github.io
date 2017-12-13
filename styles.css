@@ -134,3 +134,8 @@ article header>*{
 .email {
   color: hsl(359, 82%, 36%);
 }
+.filename {
+  display: block;
+  font-size: smaller;
+  color: grey;
+}
