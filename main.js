@@ -71,7 +71,8 @@ const legend = {
     'WH': 'White House',
     'WW': 'World War, and possibly World Wide?'
 };
-let posts;
+let posts = [];
+
 function main() {
     polNonTrip4chanPosts.forEach(p => {
         p.source = '4chan_pol_anon';
@@ -105,7 +106,7 @@ function main() {
         const value = searchElement.value;
         let filter = (text) => text.includes(value);
 
-        if(value === value.toLowerCase())
+        if (value === value.toLowerCase())
             filter = (text) => text.toLowerCase().includes(value);
 
         const ids = posts
@@ -118,15 +119,17 @@ function main() {
 
     const postLines = posts
         .filter(p => p.text)
-        .map(p => ({id: p.postId, lines: p.text
-            .split('\n')
-            .map(t => t.trim().replace(/[\.\?]/g, ''))}));
+        .map(p => ({
+            id: p.postId, lines: p.text
+                .split('\n')
+                .map(t => t.trim().replace(/[\.\?]/g, ''))
+        }));
 
     const result = {};
-    for(const post of postLines) {
-        for(const line of post.lines) {
-            if(line == '') continue;
-            if(!result[line]) result[line] = new Set();
+    for (const post of postLines) {
+        for (const line of post.lines) {
+            if (line == '') continue;
+            if (!result[line]) result[line] = new Set();
             result[line].add(post.id);
         }
     }
@@ -174,26 +177,30 @@ function postToHtmlElement(post) {
     wrapper.innerHTML = `
       <article id="post${post.postId}" class="source_${post.source} ${deleted}">
         ${
-        span(post.counter, 'counter')+
-        referenceToHtmlString(post.reference)+
-        button(answers[post.postId], 'answers', 'button', `selectAnswers(${post.postId})`)  
-    }
+    span(post.counter, post.counter, {'class': 'counter'}) +
+    referenceToHtmlString(post.reference)
+        }
         <header>
           <time datetime="${date.toISOString()}">${formatDate(date)}</time>${
-            span(post.subject, 'subject')+ 
-            span(post.name, 'name')+ 
-            span(post.trip, 'trip')+
-            span(post.email, 'email')}
-          <a href="${post.link}" target="_blank">${post.postId}</a>
+    span(post.subject, post.subject, {'class': 'subject', 'title': 'subject'}) +
+    span(post.name, post.name, {'class': 'name', 'title': 'name'}) +
+    span(post.trip, post.trip, {'class': 'trip', 'title': 'trip'}) +
+    span(post.email, post.email, {'class': 'email', 'title': 'email'}) +
+    a(post.postId, post.link, {href: post.link, target: '_blank'}) +
+    button('answers', answers[post.postId], {onclick: `selectAnswers(${post.postId})`})
+        }
         </header>
-        ${img(post.imageUrl)}
-        ${extraImages}
+        ${
+        span(post.fileName, post.fileName, {'class': 'filename', 'title': 'file name'})+
+        img(post.imageUrl)+
+        extraImages
+        }
         <div class="text">${addHighlights(post.text)}</div>
         </article>`;
     const element = wrapper.firstElementChild;
     element.addEventListener('click', (event) => {
-        if(event.target.classList.contains('text')) {
-            if(answers[post.postId]) {
+        if (event.target.classList.contains('text')) {
+            if (answers[post.postId]) {
                 console.log(answers[post.postId]);
             }
         }
@@ -201,25 +208,35 @@ function postToHtmlElement(post) {
     return element;
 }
 
-function span(content, className) {
-    const cls = className ? ` class="${className}"` : '';
-    return content ? `<span${cls}>${content}</span>` : '';
+function span(content, check, attributes) {
+    if (!check) return '';
+    attributes = attributes || {};
+    const attributeString = Object.keys(attributes).map(key => `${key}="${attributes[key]}"`).join(' ');
+    return `<span ${attributeString}>${content}</span>`;
 }
 
-function button(check, content, className, onclick) {
-    className = className ? ` class="${className}"` : '';
-    onclick = onclick ? ` onclick="${onclick}"` : '';
-    return check ? `<button${className}${onclick}>${content}</button>` : '';
+function a(content, check, attributes) {
+    if (!check) return '';
+    attributes = attributes || {};
+    const attributeString = Object.keys(attributes).map(key => `${key}="${attributes[key]}"`).join(' ');
+    return `<a ${attributeString}>${content}</a>`;
+}
+
+function button(content, check, attributes) {
+    if (!check) return '';
+    attributes = attributes || {};
+    const attributeString = Object.keys(attributes).map(key => `${key}="${attributes[key]}"`).join(' ');
+    return `<button ${attributeString}>${content}</button>`;
 }
 
 function selectAnswers(postId) {
     const oldSelected = document.querySelector(`article.selected`);
-    if(oldSelected) oldSelected.classList.remove('selected');
+    if (oldSelected) oldSelected.classList.remove('selected');
     const postElement = document.querySelector(`#post${postId}`);
     postElement.classList.add('selected');
     const aside = document.querySelector('aside');
-    const answerList = answers[''+postId].map(l => `<dt>${l.line}</dt><dd>${l.answer}</dd>`).join('\n');
-    const extraAnswerList = answers[''+postId].map(l => `<dt>${l.line}</dt><dd>${l.extraAnswer}</dd>`).join('\n');
+    const answerList = answers['' + postId].map(l => `<dt>${l.line}</dt><dd>${addHighlights(l.answer)}</dd>`).join('\n');
+    const extraAnswerList = answers['' + postId].map(l => `<dt>${l.line}</dt><dd>${addHighlights(l.extraAnswer)}</dd>`).join('\n');
     aside.innerHTML = `
       <h3>Answers for <a href="#post${postId}">${postId}</a></h3>
       <dl>${answerList}</dl>
@@ -242,7 +259,7 @@ function referenceToHtmlString(e) {
 }
 
 function img(src) {
-    if(!src) return '';
+    if (!src) return '';
     return `<a href="${src}" target="_blank"><img src="${src}" class="contain" width="300" height="300"></a>`
 }
 
@@ -273,8 +290,11 @@ function xx(x) {
 
 Object.filter = (obj, predicate) =>
     Object.keys(obj)
-        .filter( key => predicate(obj[key]) )
-        .reduce( (res, key) => {res[key] = obj[key]; return res}, {} );
+        .filter(key => predicate(obj[key]))
+        .reduce((res, key) => {
+            res[key] = obj[key];
+            return res
+        }, {});
 
 document.addEventListener('DOMContentLoaded', () => {
     main();
