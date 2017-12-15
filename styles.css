@@ -13,9 +13,10 @@ body {
 body>header {
   height: 30px;
   padding: 10px;
-  z-index: 10;
   background-color: white;
-  display: flex;
+  box-shadow: 0 1px 4px 0 hsla(0, 0%, 0%, 0.2);
+  z-index: 10;
+  position: relative;
 }
 body>header input[type=search] {
   padding: 5px 10px;
@@ -39,14 +40,27 @@ section {
 }
 
 aside {
-  width: 400px;
-  background-color: aliceblue;
+  width: 440px;
+  background-color: hsl(208, 70%, 98%);
   overflow-y: auto;
   height: calc(100vh - 50px);
   padding: 10px;
   box-sizing: border-box;
+  color: hsl(0, 0%, 33%);
+  box-shadow: -1px 2px 4px 0 hsla(0, 0%, 0%, 0.2);
+  z-index: 10;
+  position: relative;
 }
-
+aside h1 > * {
+  margin-left: 10px
+}
+aside h2 {
+  color: hsl(0, 0%, 50%);
+  text-align: center;
+}
+aside h3 {
+  font-size: 14px;
+}
 article {
   position: relative;
   border-radius: 6px;
@@ -56,22 +70,19 @@ article {
   width: 400px;
 }
 article.selected {
-  background-color: hsl(180, 44%, 89%);
+  background-color: hsl(208, 70%, 98%);
+  box-shadow: 0 1px 4px 0px hsla(0, 0%, 0%, 0.2);
 }
 
-h3 {
-  color: hsl(0, 0%, 50%);
-  text-align: center;
-}
-dd, .text {
+.text {
   max-width: 100%;
   white-space: pre-wrap;
 }
-dt {
-  font-weight: bold;
+.row {
+  display: flex;
 }
-dd {
-  margin-bottom: 10px;
+.stretch {
+  flex: 1;
 }
 a[target=_blank]::after {
   content: '→';
@@ -139,4 +150,68 @@ article header>*{
   display: block;
   font-size: smaller;
   color: grey;
+}
+
+button {
+  background-color: white;
+  padding: 6px 20px;
+  line-height: 10px;
+  border: 3px solid hsl(0, 0%, 95%);
+  text-transform: uppercase;
+  transition: all .5s;
+}
+button:active {
+  background-color: hsl(0, 0%, 95%);
+}
+
+article button.answers {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.answers.empty {
+  background-color: hsl(0, 80%, 40%);
+  color: white;
+}
+.answers.edited {
+  background-color: hsl(120, 80%, 40%);
+  color: white;
+}
+
+textarea {
+  border: 1px solid hsl(0, 0%, 90%);
+}
+#copy {
+  width: 1px;
+  opacity:0;
+}
+#status {
+  padding: 5px 10px;
+}
+
+/*
+EDITOR
+ */
+aside .editor-toolbar {
+  border: none;
+}
+aside .disabled-for-preview :not(.no-disable) {
+  visibility: hidden;
+}
+i.separator {
+  display: none !important;
+}
+a.fa.fa-eye.no-disable.active::before {
+  content: "\f040";
+}
+aside .CodeMirror {
+  border-style: dotted;
+}
+aside .disabled-for-preview+.CodeMirror {
+  border: none;
+}
+aside .editor-preview {
+  border: none;
+  background-color: hsl(208, 70%, 98%);
+  color: hsl(0, 0%, 33%);
 }

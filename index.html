@@ -3,30 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <title>Q</title>
-  <link rel="stylesheet" href="styles.css">
 
+  <link rel="stylesheet" href="lib/simplemde.min.css">
+  <script src="lib/simplemde.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
   <script src="data/polNonTrip4chanPosts.js"></script>
   <script src="data/polTrip4chanPosts.js"></script>
   <script src="data/polTrip8chanPosts.js"></script>
   <script src="data/cbtsTrip8chanPosts.js"></script>
-  <script src="data/answers.js"></script>
   <script src="main.js"></script>
 </head>
 <body>
-<header>
+<header class="row">
   <div>
     <input type="search" placeholder="type to filter..." list="hints">
 
     <datalist id="hints"></datalist>
     <span id="count"></span>
   </div>
-  <div>
+  <div class="stretch">
     <div id="status"></div>
+  </div>
+  <div class="row">
+    <!--<textarea placeholder="paste new answer json here" id="paste"></textarea>-->
+    <!--<textarea id="Copy"></textarea>-->
+    <!--<button onclick="copyAnswers()">Copy</button>-->
+    <!--<button onclick="storeLocalAnswers()" title="Save answers in your personal browser database">Save</button>-->
+    <!--<button onclick="loadLocalAnswers()" title="Load answers from your personal browser database">Load</button>-->
   </div>
 </header>
 <main>
   <section></section>
-  <aside></aside>
+  <aside>
+    <h1>Answers</h1>
+    <div id="editor-wrapper">
+      <textarea id="answers"></textarea>
+    </div>
+  </aside>
 </main>
 </body>
 </html>

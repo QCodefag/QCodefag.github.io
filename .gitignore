@@ -1,13 +1,1 @@
-# Ignore everything
-*
-
-# But not these files...
-!.gitignore
-!data
-!index.html
-!main.js
-!styles.css
-# etc...
-
-# ...even if they are in subdirectories
-!*/
+.idea/
