@@ -215,3 +215,9 @@ aside .editor-preview {
   background-color: hsl(208, 70%, 98%);
   color: hsl(0, 0%, 33%);
 }
+
+@media screen and (max-width: 641px){
+  aside {
+    display: none;
+  }
+}
