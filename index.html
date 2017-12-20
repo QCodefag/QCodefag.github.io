@@ -27,8 +27,8 @@
   </div>
   <div class="row">
     <!--<textarea placeholder="paste new answer json here" id="paste"></textarea>-->
-    <!--<textarea id="Copy"></textarea>-->
-    <!--<button onclick="copyAnswers()">Copy</button>-->
+    <textarea id="Copy" placeholder="click select-all copy"></textarea>
+    <button onclick="copyAnswers()">Copy edited answers</button>
     <!--<button onclick="storeLocalAnswers()" title="Save answers in your personal browser database">Save</button>-->
     <!--<button onclick="loadLocalAnswers()" title="Load answers from your personal browser database">Load</button>-->
   </div>
@@ -36,7 +36,12 @@
 <main>
   <section></section>
   <aside>
-    <h1>Answers</h1>
+    <div class="row">
+      <h1 class="stretch">Answers</h1>
+      <div>
+        <button onclick="resetAnswer()">Reset</button>
+      </div>
+    </div>
     <div id="editor-wrapper">
       <textarea id="answers"></textarea>
     </div>

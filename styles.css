@@ -181,7 +181,7 @@ article button.answers {
 textarea {
   border: 1px solid hsl(0, 0%, 90%);
 }
-#copy {
+#Copy {
   width: 1px;
   opacity:0;
 }

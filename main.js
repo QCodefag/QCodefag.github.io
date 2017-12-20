@@ -98,10 +98,6 @@ function main() {
         p.source = '8chan_pol';
         p.link = `https://8ch.net/pol/res/${p.threadId}.html#${p.postId}`;
     });
-    cbtsTrip8chanPosts.forEach(p => {
-        p.source = '8chan_cbts';
-        p.link = `https://8ch.net/cbts/res/${p.threadId}.html#${p.postId}`;
-    });
     posts = []
         .concat(polNonTrip4chanPosts)
         .concat(polTrip4chanPosts)
@@ -129,6 +125,8 @@ function main() {
     //         alert('wrong format');
     //     }
     // }
+    // const textarea = document.querySelector('#Copy');
+    // textarea.onfocus = () => textarea.value = getAllAnswersUpdate();
 }
 
 function initSearch() {
@@ -259,7 +257,7 @@ function postToHtmlString(post) {
         
         <div class="text">${addHighlights(post.text)}</div>`;
 }
-
+// 1,10925,12916,13092,13215,59684,93287,93312,14795558,14797863,147023341,148029633,148029962,148031295,148032210,148032910,148033178,148033932,148136656,1476689362
 function forAll(items, callback) {
     if (items && items instanceof Array)
         return items.map(callback).join('');
@@ -354,7 +352,7 @@ function getPostsByThread(id) {
             return [];
         }
         const threadPosts = result['posts']
-            .map(parse8chanPost);
+            .map(p => parse8chanPost(p, id));
 
         const newPosts = threadPosts
             .filter((p) => p.trip === '!UW.yye1fxo');
@@ -367,8 +365,6 @@ function getPostsByThread(id) {
                 const referenceId = referencePattern.exec(newPost.text)[1];
                 newPost['reference'] = threadPosts.find((p) => p.postId == referenceId);
             }
-            newPost.source = '8chan_cbts';
-            newPost.link = `https://8ch.net/cbts/res/${newPost.threadId}.html#${newPost.postId}`;
         }
         console.log(`added ${newPosts.length} thread ${id}`);
         return newPosts;
@@ -379,7 +375,7 @@ function getJson(url) {
     return fetch(url).then(response => response.json());
 }
 
-function parse8chanPost(post) {
+function parse8chanPost(post, threadId) {
     const keyMap = {
         'no': 'postId',
         'id': 'userId',
@@ -410,6 +406,8 @@ function parse8chanPost(post) {
         else
             newPost[keyMap[key]] = post[key];
     }
+    newPost.source = '8chan_cbts';
+    newPost.link = `https://8ch.net/cbts/res/${threadId}.html#${newPost.postId}`;
     return newPost;
 }
 
@@ -442,8 +440,8 @@ function copyAnswers() {
 
     const copyTextarea = document.querySelector('#Copy');
     copyTextarea.value = JSON.stringify(editedAnswers, null, 2);
-    copyTextarea.select();
 
+    copyTextarea.select();
     try {
         document.execCommand('copy');
         copyTextarea.value = '';
@@ -452,17 +450,32 @@ function copyAnswers() {
     }
 }
 
+function resetAnswer() {
+    const oldSelected = document.querySelector(`article.selected`);
+    if (oldSelected) {
+        const oldId = oldSelected.id.replace('post', '');
+        delete editedAnswers[oldId];
+        const value = answers[oldId] || '';
+        editor.value(value);
+        if (editor.isPreviewActive()) {
+            setPreview(editor);
+        }
+        oldSelected.querySelector('article button').className = `answers ${value ? '' : 'empty'}`;
+    }
+}
+
 function selectAnswers(postId) {
     const oldSelected = document.querySelector(`article.selected`);
     if (oldSelected) {
         const oldId = oldSelected.id.replace('post', '');
         if((!answers[oldId] && editor.value().length) || (answers[oldId] && answers[oldId] !== editor.value())) {
-            editedAnswers[oldId] = editor.value()
+            editedAnswers[oldId] = editor.value();
+            oldSelected.querySelector('article button').className = `answers edited`
         }
         oldSelected.classList.remove('selected');
     }
     if(!postId) {
-        document.querySelector('aside>h1').innerHTML = `Answers`;
+        document.querySelector('aside h1').innerHTML = `Answers`;
         editor.value('');
         if (editor.isPreviewActive()) {
             setPreview(editor);
@@ -474,7 +487,7 @@ function selectAnswers(postId) {
         const postElement = document.querySelector(`#post${postId}`);
         postElement.classList.add('selected');
 
-        document.querySelector('aside>h1').innerHTML = `Answers for <a href="#post${postId}">${postId}</a>`;
+        document.querySelector('aside h1').innerHTML = `Answers for <a href="#post${postId}">${postId}</a>`;
 
         const answer = editedAnswers[''+postId] !== undefined ? editedAnswers[''+postId] : answers['' + postId] || '';
         editor.value(answer);
@@ -519,11 +532,7 @@ function setPreview(editor) {
 }
 
 function getAllAnswersUpdate() {
-    for(const postId of Object.keys(editedAnswers)) {
-
-        answers[postId] = editedAnswers[postId];
-    }
-    return JSON.stringify(answers);
+    return JSON.stringify(Object.assign({}, answers, editedAnswers), null, 2);
 }
 
 document.addEventListener('DOMContentLoaded', main, false);
