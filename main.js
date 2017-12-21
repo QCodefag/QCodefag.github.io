@@ -245,15 +245,8 @@ function postToHtmlString(post) {
         ${check(post.fileName, `
         <span class="filename" title="file name">${post.fileName}</span>`)}
         
-        ${check(post.imageUrl, `
-        <a href="${post.imageUrl}" target="_blank">
-          <img src="${post.imageUrl}" class="contain" width="300" height="300">
-        </a>`)}
-        
-        ${forAll(post.extraImageUrls, (src) => `
-        <a href="${src}" target="_blank">
-          <img src="${src}" class="contain" width="300" height="300">
-        </a>`)}
+        ${post.new ? ifExists(post.imageUrl, img) : ifExists(post.imageUrl, a => img(localImgSrc(a)))}
+        ${post.new ? forAll(post.extraImageUrls, img) : forAll(post.extraImageUrls, a => img(localImgSrc(a)))}
         
         <div class="text">${addHighlights(post.text)}</div>`;
 }
@@ -269,10 +262,15 @@ function check(condition, html) {
         return html;
     return '';
 }
+const ifExists = (item, htmlCallback) => item ? htmlCallback(item) : '';
+const localImgSrc = src => 'data/images/'+src.split('/').slice(-1)[0];
 
 function img(src) {
     if (!src) return '';
-    return `<a href="${src}" target="_blank"><img src="${src}" class="contain" width="300" height="300"></a>`
+    return `
+    <a href="${src}" target="_blank">
+      <img src="${src}" class="contain" width="300" height="300">
+    </a>`
 }
 
 const legendPattern = new RegExp(`([^a-zA-Z])(${Object.keys(legend).join('|')})([^a-zA-Z])`, 'g');
@@ -334,7 +332,7 @@ function checkForNewPosts() {
             console.log(`empty threads\n${emptyThreads}`);
 
             newPosts.sort((a, b) => a['timestamp'] - b['timestamp']);
-            newPosts.forEach(p => p.counter = counter++);
+            newPosts.forEach(p => p.new = true);
             newPosts.reverse();
             posts.unshift(...newPosts);
             render(posts);
@@ -539,3 +537,7 @@ function getAllAnswersUpdate() {
 document.addEventListener('DOMContentLoaded', main, false);
 
 window.addEventListener('beforeunload', storeLocalAnswers);
+
+function setLocalImage() {
+    if (!this.src) this.src = 'error.jpg';
+}

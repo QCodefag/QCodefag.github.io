@@ -111,7 +111,7 @@ q {
   position: absolute;
   left: -30px;
 }
-img.contain {
+.contain {
   object-fit: contain;
   background: hsl(0, 0%, 95%);
   margin-right: 20px;
@@ -216,8 +216,30 @@ aside .editor-preview {
   color: hsl(0, 0%, 33%);
 }
 
-@media screen and (max-width: 641px){
+@media screen and (max-width: 1000px){
   aside {
     display: none;
   }
+  section {
+    width: 100%;
+  }
+  .answers {
+    display: none;
+  }
+  .toggle-answers {
+    display: none;
+  }
+  [onclick="toggleAnswers()"] {
+    display: none;
+  }
+}
+
+.answers-disabled .answers {
+  display: none;
+}
+.answers-disabled aside {
+  display: none;
+}
+.answers-disabled section {
+  width: 100%;
 }
