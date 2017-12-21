@@ -73,10 +73,10 @@ const legend = {
 };
 let posts = [];
 let statusElement;
-let counter = 1;
 let editor;
 let answers = {};
 let editedAnswers = {};
+let postOrder = [];
 
 function main() {
     editor = new SimpleMDE({element: document.getElementById('answers'), spellChecker: false});
@@ -105,9 +105,8 @@ function main() {
         .concat(cbtsTrip8chanPosts)
     ;
 
-    posts.sort((a, b) => a.timestamp - b.timestamp);
-    posts.forEach(p => p.counter = counter++);
     posts.sort((a, b) => b.timestamp - a.timestamp);
+    postOrder.push(...(posts.map(p => p.postId).reverse()));
 
     loadLocalAnswers();
     fetch('data/answers.json', {credentials: 'same-origin'})
@@ -116,38 +115,29 @@ function main() {
         render(posts);
     });
     checkForNewPosts();
-
-    // document.querySelector('#paste').oninput = (event) => {
-    //     try {
-    //         editedAnswers = JSON.parse(event.target.value);
-    //         render(posts);
-    //     } catch (e) {
-    //         alert('wrong format');
-    //     }
-    // }
-    // const textarea = document.querySelector('#Copy');
-    // textarea.onfocus = () => textarea.value = getAllAnswersUpdate();
 }
 
 function initSearch() {
     const searchElement = document.querySelector('input[type=search]');
     searchElement.oninput = () => {
         const value = searchElement.value;
-        let filter = (text) => text.includes(value);
 
-        if (value === value.toLowerCase())
-            filter = (text) => text.toLowerCase().includes(value);
+        const keywordInText = value === value.toLowerCase()
+            ? text => text.toLowerCase().includes(value)
+            : text => text.includes(value);
 
         const ids = posts
-            .filter(p => p.text && filter(p.text))
+            .filter(p => p.text && keywordInText(p.text))
             .map(p => p.postId);
+
         applyFilter(ids);
     };
 
     const postLines = posts
         .filter(p => p.text)
         .map(p => ({
-            id: p.postId, lines: p.text
+            id: p.postId,
+            lines: p.text
                 .split('\n')
                 .map(t => t.trim().replace(/[.?]/g, ''))
         }));
@@ -170,18 +160,20 @@ function initSearch() {
 }
 
 function applyFilter(ids) {
-    const countElement = document.querySelector('#count');
-
     let count = 0;
-    for (const post of posts) {
-        if (ids.includes(post.postId)) {
-            post.element.hidden = false;
+    for (const element of Array.from(document.querySelectorAll('article'))) {
+        if (ids.includes(element.item.postId)) {
+            element.hidden = false;
             count++;
         } else {
-            post.element.hidden = true;
+            element.hidden = true;
         }
     }
-    countElement.textContent = `${count}`;
+    document.querySelector('#count').textContent = `${count}`;
+}
+
+function toggleAnswers() {
+    document.body.classList.toggle('answers-disabled')
 }
 
 ////////////////////
@@ -192,9 +184,7 @@ function render(items) {
     const container = document.querySelector('section');
     container.innerHTML = '';
     for (const item of items) {
-        const element = postToHtmlElement(item);
-        item.element = element;
-        container.appendChild(element);
+        container.appendChild(postToHtmlElement(item));
     }
     initSearch();
     selectAnswers(null);
@@ -205,79 +195,69 @@ function postToHtmlElement(post) {
     const answerClass = answerButtonClass(post.postId);
 
     wrapper.innerHTML = `
-      <article id="post${post.postId}" class="source_${post.source} ${check(post.timestampDeletion, 'deleted')}">
+      <article id="post${post.postId}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
         <button onclick="selectAnswers(${post.postId})" class="answers ${answerClass}">answers</button>
-        <span class="counter">${post.counter}</span>
-        ${check(post.reference, `
-        <blockquote id="post${post.postId}">${postToHtmlString(post.reference)}</blockquote>`)}
-        ${postToHtmlString(post)}
+        <span class="counter">${postOrder.indexOf(post.postId) + 1}</span>
+        ${ifExists(post.reference, x => `
+        <blockquote id="post${post.postId}">${html.post(x)}</blockquote>`)}
+        ${html.post(post)}
       </article>`;
-    return wrapper.firstElementChild;
+    const element = wrapper.firstElementChild;
+    element.item = post;
+    return element;
 }
 
-function answerButtonClass(postId) {
-    if(editedAnswers[postId]) return 'edited';
-    if(answers[postId] && answers[postId].length) return '';
-    return 'empty';
-}
+const answerButtonClass = (postId) =>
+    editedAnswers[postId]
+        ? 'edited'
+        : answers[postId] && answers[postId].length
+        ? ''
+        : 'empty';
 
-function postToHtmlString(post) {
-    if(!post) return '';
+const html = {};
+html.post = (post) => {
+    if (!post) return '';
     const date = new Date(post.timestamp * 1000);
     return `
         <header>
           <time datetime="${date.toISOString()}">${formatDate(date)}</time>
           
-          ${check(post.subject, `
-          <span class="subject" title="subject">${post.subject}</span>`)}
+          ${ifExists(post.subject, x => `
+          <span class="subject" title="subject">${x}</span>`)}
           
           <span class="name" title="name">${post.name}</span>
           
-          ${check(post.trip, `
-          <span class="trip" title="trip">${post.trip}</span>`)}
+          ${ifExists(post.trip, x => `
+          <span class="trip" title="trip">${x}</span>`)}
               
-          ${check(post.email, `
-          <span class="email" title="email">${post.email}</span>`)}
+          ${ifExists(post.email, x => `
+          <span class="email" title="email">${x}</span>`)}
               
           <a href="${post.link}" target="_blank">${post.postId}</a>
         </header>
         
-        ${check(post.fileName, `
-        <span class="filename" title="file name">${post.fileName}</span>`)}
+        ${ifExists(post.fileName, x => `
+        <span class="filename" title="file name">${x}</span>`)}
         
-        ${post.new ? ifExists(post.imageUrl, img) : ifExists(post.imageUrl, a => img(localImgSrc(a)))}
-        ${post.new ? forAll(post.extraImageUrls, img) : forAll(post.extraImageUrls, a => img(localImgSrc(a)))}
+        ${post.new ? ifExists(post.imageUrl, html.img) : ifExists(post.imageUrl, a => html.img(localImgSrc(a)))}
+        ${post.new ? forAll(post.extraImageUrls, html.img) : forAll(post.extraImageUrls, a => html.img(localImgSrc(a)))}
         
         <div class="text">${addHighlights(post.text)}</div>`;
-}
-// 1,10925,12916,13092,13215,59684,93287,93312,14795558,14797863,147023341,148029633,148029962,148031295,148032210,148032910,148033178,148033932,148136656,1476689362
-function forAll(items, callback) {
-    if (items && items instanceof Array)
-        return items.map(callback).join('');
-    return '';
-}
+};
+html.img = (src) => !src
+    ? ''
+    : `<a href="${src}" target="_blank"><img src="${src}" class="contain" width="300" height="300"></a>`;
 
-function check(condition, html) {
-    if (condition)
-        return html;
-    return '';
-}
+// 1,10925,12916,13092,13215,59684,93287,93312,14795558,14797863,147023341,148029633,148029962,148031295,148032210,148032910,148033178,148033932,148136656,1476689362
+const forAll = (items, callback) => items && items instanceof Array ? items.map(callback).join('') : '';
 const ifExists = (item, htmlCallback) => item ? htmlCallback(item) : '';
 const localImgSrc = src => 'data/images/'+src.split('/').slice(-1)[0];
 
-function img(src) {
-    if (!src) return '';
-    return `
-    <a href="${src}" target="_blank">
-      <img src="${src}" class="contain" width="300" height="300">
-    </a>`
-}
-
 const legendPattern = new RegExp(`([^a-zA-Z])(${Object.keys(legend).join('|')})([^a-zA-Z])`, 'g');
 
-function addHighlights(text) {
-    if (!text) return '';
-    return text
+const addHighlights = text => !text
+    ? ''
+    : text
         .replace(/(^>[^>].*\n?)+/g,
             (match) => `<q>${match}</q>`)
         .replace(/(https?:\/\/[.\w\/?\-=&]+)/g,
@@ -285,9 +265,7 @@ function addHighlights(text) {
         .replace(/(\[[^[]+])/g,
             (match) => `<strong>${match}</strong>`)
         .replace(legendPattern,
-            (match, p1, p2, p3, o, s) => `${p1}<abbr title="${legend[p2]}">${p2}</abbr>${p3}`)
-        ;
-}
+            (match, p1, p2, p3, o, s) => `${p1}<abbr title="${legend[p2]}">${p2}</abbr>${p3}`);
 
 function formatDate(date) {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -321,9 +299,9 @@ function checkForNewPosts() {
     getJson(catalogUrl).then(threads => {
 
         const newThreadIds = threads
-            .reduce((p, e) => p.concat(e['threads']), [])
-            .filter((p) => p['sub'].includes('CBTS'))
-            .map((p) => p['no'])
+            .reduce((p, e) => p.concat(e.threads), [])
+            .filter((p) => p.sub.includes('CBTS'))
+            .map((p) => p.no)
             .filter((id) => !alreadyParsedIds.includes(id));
 
         Promise.all(newThreadIds.map(getPostsByThread)).then(result => {
@@ -331,10 +309,10 @@ function checkForNewPosts() {
 
             console.log(`empty threads\n${emptyThreads}`);
 
-            newPosts.sort((a, b) => a['timestamp'] - b['timestamp']);
+            newPosts.sort((a, b) => b['timestamp'] - a['timestamp']);
             newPosts.forEach(p => p.new = true);
-            newPosts.reverse();
             posts.unshift(...newPosts);
+            postOrder.push(...(newPosts.map(p => p.postId).reverse()));
             render(posts);
             statusElement.textContent = '';
         });
@@ -346,11 +324,11 @@ function getPostsByThread(id) {
     const referencePattern = />>(\d+)/g;
 
     return getJson(threadUrl(id)).then(result => {
-        if (!result['posts'].some((p) => p.trip === '!UW.yye1fxo')) {
+        if (!result.posts.some((p) => p.trip === '!UW.yye1fxo')) {
             emptyThreads.push(id);
             return [];
         }
-        const threadPosts = result['posts']
+        const threadPosts = result.posts
             .map(p => parse8chanPost(p, id));
 
         const newPosts = threadPosts
@@ -362,7 +340,7 @@ function getPostsByThread(id) {
             if (referencePattern.test(newPost.text)) {
                 referencePattern.lastIndex = 0;
                 const referenceId = referencePattern.exec(newPost.text)[1];
-                newPost['reference'] = threadPosts.find((p) => p.postId == referenceId);
+                newPost.reference = threadPosts.find((p) => p.postId == referenceId);
             }
         }
         console.log(`added ${newPosts.length} thread ${id}`);
@@ -375,6 +353,8 @@ function getJson(url) {
 }
 
 function parse8chanPost(post, threadId) {
+    const getImgUrl = (chanPost) => `https://media.8ch.net/file_store/${chanPost.tim}${chanPost.ext}`;
+
     const keyMap = {
         'no': 'postId',
         'id': 'userId',
@@ -395,9 +375,9 @@ function parse8chanPost(post, threadId) {
         if (post[key] == null) continue;
 
         if (key == 'tim')
-            newPost[keyMap[key]] = `https://media.8ch.net/file_store/${post[key]}${post['ext']}`;
+            newPost[keyMap[key]] = getImgUrl(post);
         else if (key == 'extra_files')
-            newPost[keyMap[key]] = post[key].map((e) => `https://media.8ch.net/file_store/${e['tim']}${e['ext']}`);
+            newPost[keyMap[key]] = post[key].map(getImgUrl);
         else if (key == 'no')
             newPost[keyMap[key]] = post[key].toString();
         else if (key == 'com')
@@ -431,10 +411,10 @@ function cleanHtmlText(htmlText) {
 ////////////////////
 
 function copyAnswers() {
-    const oldSelected = document.querySelector(`article.selected`);
-    if (oldSelected) {
-        const oldId = oldSelected.id.replace('post', '');
-        editedAnswers[oldId] = editor.value();
+    const selectedArticle = document.querySelector(`article.selected`);
+    if (selectedArticle) {
+        const postId = selectedArticle.item.postId;
+        editedAnswers[postId] = editor.value();
     }
 
     const copyTextarea = document.querySelector('#Copy');
@@ -450,30 +430,30 @@ function copyAnswers() {
 }
 
 function resetAnswer() {
-    const oldSelected = document.querySelector(`article.selected`);
-    if (oldSelected) {
-        const oldId = oldSelected.id.replace('post', '');
-        delete editedAnswers[oldId];
-        const value = answers[oldId] || '';
+    const selectedArticle = document.querySelector(`article.selected`);
+    if (selectedArticle) {
+        const postId = selectedArticle.item.postId;
+        delete editedAnswers[postId];
+        const value = answers[postId] || '';
         editor.value(value);
         if (editor.isPreviewActive()) {
             setPreview(editor);
         }
-        oldSelected.querySelector('article button').className = `answers ${value ? '' : 'empty'}`;
+        selectedArticle.querySelector('article button').className = `answers ${value ? '' : 'empty'}`;
     }
 }
 
-function selectAnswers(postId) {
-    const oldSelected = document.querySelector(`article.selected`);
-    if (oldSelected) {
-        const oldId = oldSelected.id.replace('post', '');
-        if((!answers[oldId] && editor.value().length) || (answers[oldId] && answers[oldId] !== editor.value())) {
-            editedAnswers[oldId] = editor.value();
-            oldSelected.querySelector('article button').className = `answers edited`
+function selectAnswers(selectedPostId) {
+    const selectedArticle = document.querySelector(`article.selected`);
+    if (selectedArticle) {
+        const postId = selectedArticle.item.postId;
+        if ((!answers[postId] && editor.value().length) || (answers[postId] && answers[postId] !== editor.value())) {
+            editedAnswers[postId] = editor.value();
+            selectedArticle.querySelector('article button').className = `answers edited`
         }
-        oldSelected.classList.remove('selected');
+        selectedArticle.classList.remove('selected');
     }
-    if(!postId) {
+    if (!selectedPostId) {
         document.querySelector('aside h1').innerHTML = `Answers`;
         editor.value('');
         if (editor.isPreviewActive()) {
@@ -483,12 +463,12 @@ function selectAnswers(postId) {
     } else {
         document.querySelector('#editor-wrapper').style.display = 'block';
 
-        const postElement = document.querySelector(`#post${postId}`);
-        postElement.classList.add('selected');
+        const article = document.querySelector(`#post${selectedPostId}`);
+        article.classList.add('selected');
 
-        document.querySelector('aside h1').innerHTML = `Answers for <a href="#post${postId}">${postId}</a>`;
+        document.querySelector('aside h1').innerHTML = `Answers for <a href="#post${selectedPostId}">${selectedPostId}</a>`;
 
-        const answer = editedAnswers[''+postId] !== undefined ? editedAnswers[''+postId] : answers['' + postId] || '';
+        const answer = editedAnswers[selectedPostId] !== undefined ? editedAnswers[selectedPostId] : answers[selectedPostId] || '';
         editor.value(answer);
         // refresh hack
         if (editor.isPreviewActive()) {
@@ -498,34 +478,33 @@ function selectAnswers(postId) {
 }
 
 function storeLocalAnswers() {
-    const oldSelected = document.querySelector(`article.selected`);
-    if (oldSelected) {
-        const oldId = oldSelected.id.replace('post', '');
-        editedAnswers[oldId] = editor.value();
+    const selectedArticle = document.querySelector(`article.selected`);
+    if (selectedArticle) {
+        const postId = selectedArticle.item.postId;
+        editedAnswers[postId] = editor.value();
     }
     localStorage.setItem('answers', JSON.stringify(editedAnswers));
 }
 
 function loadLocalAnswers() {
     const newAnswers = localStorage.getItem('answers');
-    if(newAnswers) {
+    if (newAnswers) {
         editedAnswers = JSON.parse(newAnswers);
     }
 }
 
 function setPreview(editor) {
     const wrapper = editor.codemirror.getWrapperElement();
-    const toolbarDiv = wrapper.previousSibling;
     const toolbar = editor.options.toolbar ? editor.toolbarElements.preview : null;
     const preview = wrapper.lastChild;
 
-    // setTimeout(function() {
-    // }, 1);
-    preview.className += " editor-preview-active";
+    preview.classList.add("editor-preview-active");
 
-    if(toolbar) {
-        toolbar.className += " active";
-        toolbarDiv.className += " disabled-for-preview";
+    if (toolbar) {
+        toolbar.classList.add("active");
+
+        const toolbarDiv = wrapper.previousSibling;
+        toolbarDiv.classList.add("disabled-for-preview");
     }
     preview.innerHTML = editor.options.previewRender(editor.value(), preview);
 }
@@ -537,7 +516,3 @@ function getAllAnswersUpdate() {
 document.addEventListener('DOMContentLoaded', main, false);
 
 window.addEventListener('beforeunload', storeLocalAnswers);
-
-function setLocalImage() {
-    if (!this.src) this.src = 'error.jpg';
-}
