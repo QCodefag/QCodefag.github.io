@@ -239,8 +239,8 @@ html.post = (post) => {
         ${ifExists(post.fileName, x => `
         <span class="filename" title="file name">${x}</span>`)}
         
-        ${post.new ? ifExists(post.imageUrl, html.img) : ifExists(post.imageUrl, a => html.img(localImgSrc(a)))}
-        ${post.new ? forAll(post.extraImageUrls, html.img) : forAll(post.extraImageUrls, a => html.img(localImgSrc(a)))}
+        ${ifExists(post.imageUrl, post.isNew ? html.img : pipe(localImgSrc, html.img))}
+        ${forAll(post.extraImageUrls, post.isNew ? html.img : pipe(localImgSrc, html.img))}
         
         <div class="text">${addHighlights(post.text)}</div>`;
 };
@@ -249,9 +249,10 @@ html.img = (src) => !src
     : `<a href="${src}" target="_blank"><img src="${src}" class="contain" width="300" height="300"></a>`;
 
 // 1,10925,12916,13092,13215,59684,93287,93312,14795558,14797863,147023341,148029633,148029962,148031295,148032210,148032910,148033178,148033932,148136656,1476689362
-const forAll = (items, callback) => items && items instanceof Array ? items.map(callback).join('') : '';
+const forAll = (items, htmlCallback) => items && items instanceof Array ? items.map(htmlCallback).join('') : '';
 const ifExists = (item, htmlCallback) => item ? htmlCallback(item) : '';
 const localImgSrc = src => 'data/images/'+src.split('/').slice(-1)[0];
+const pipe = (...funcs) => i => funcs.reduce((p, c) => c(p), i);
 
 const legendPattern = new RegExp(`([^a-zA-Z])(${Object.keys(legend).join('|')})([^a-zA-Z])`, 'g');
 
@@ -272,9 +273,7 @@ function formatDate(date) {
     return `${months[date.getMonth()]} ${date.getDate()}, ${xx(date.getHours())}:${xx(date.getMinutes())}:${xx(date.getSeconds())}`;
 }
 
-function xx(x) {
-    return (x < 10 ? '0' : '') + x;
-}
+const xx = x => (x < 10 ? '0' : '') + x;
 
 ////////////////////
 // parse 8chan posts
@@ -310,7 +309,7 @@ function checkForNewPosts() {
             console.log(`empty threads\n${emptyThreads}`);
 
             newPosts.sort((a, b) => b['timestamp'] - a['timestamp']);
-            newPosts.forEach(p => p.new = true);
+            newPosts.forEach(p => p.isNew = true);
             posts.unshift(...newPosts);
             postOrder.push(...(newPosts.map(p => p.postId).reverse()));
             render(posts);
