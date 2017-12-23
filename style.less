@@ -30,12 +30,12 @@ main {
 
 section {
   overflow-y: auto;
-  height: calc(100vh - 50px);
+  height: ~'calc(100vh - 50px)';
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
-  width: calc(100% - 400px);
+  width: ~'calc(100% - 400px)';
   justify-content: space-around;
 }
 
@@ -43,7 +43,7 @@ aside {
   width: 440px;
   background-color: hsl(208, 70%, 98%);
   overflow-y: auto;
-  height: calc(100vh - 50px);
+  height: ~'calc(100vh - 50px)';
   padding: 10px;
   box-sizing: border-box;
   color: hsl(0, 0%, 33%);
@@ -192,10 +192,10 @@ textarea {
 /*
 EDITOR
  */
-aside .editor-toolbar {
+.editor-toolbar {
   border: none;
 }
-aside .disabled-for-preview :not(.no-disable) {
+.disabled-for-preview :not(.no-disable) {
   visibility: hidden;
 }
 i.separator {
@@ -204,18 +204,21 @@ i.separator {
 a.fa.fa-eye.no-disable.active::before {
   content: "\f040";
 }
-aside .CodeMirror {
+.CodeMirror {
   border-style: dotted;
 }
-aside .disabled-for-preview+.CodeMirror {
+.disabled-for-preview+.CodeMirror {
   border: none;
 }
-aside .editor-preview {
+.editor-preview {
   border: none;
   background-color: hsl(208, 70%, 98%);
   color: hsl(0, 0%, 33%);
 }
 
+/*
+Answers toggle
+ */
 @media screen and (max-width: 1000px){
   aside {
     display: none;
@@ -234,12 +237,73 @@ aside .editor-preview {
   }
 }
 
-.answers-disabled .answers {
-  display: none;
+.answers-disabled {
+  .answers {
+    display: none;
+  }
+  aside {
+    display: none;
+  }
+  section {
+    width: 100%;
+  }
 }
-.answers-disabled aside {
-  display: none;
+
+/*
+Dialog
+ */
+button[onclick="toggleDialog()"] {
+  font-size: 18px;
 }
-.answers-disabled section {
+.dialog {
+  display: none;
+
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 100;
+  box-shadow: 0 0 45px hsla(0, 0%, 0%, 0.9);
+
+  background-color: white;
+  padding: 20px;
+
+  &.open, &.opening {
+    display: block;
+  }
+  > * {
+    overflow: auto;
+    width: 100%;
+    max-width: 90vw;
+    max-height: 95vh;
+    box-sizing: border-box;
+  }
+  &.open {
+    opacity: 1;
+    transform: scale(1) translate(-50%, -50%);
+    &+.overlay {
+      display: block;
+    }
+  }
+}
+
+.overlay {
+  display: none;
+  background-image: linear-gradient(to top right, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 99;
+}
+
+.overlay:after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1001;
+  background-image: linear-gradient(-19deg, rgba(43,40,50,0.8) 0%, rgba(43,40,50,0.4) 46%, rgba(0,0,0,0.05) 50%);
+  filter: blur(70px);
 }

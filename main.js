@@ -176,6 +176,11 @@ function toggleAnswers() {
     document.body.classList.toggle('answers-disabled')
 }
 
+function toggleDialog() {
+    const dialog = document.querySelector('.dialog');
+    dialog.classList.toggle('open');
+}
+
 ////////////////////
 // rendering
 ////////////////////
