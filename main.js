@@ -189,20 +189,22 @@ function render(items) {
     initSearch();
     selectAnswers(null);
 }
-
+const tag = {
+  fromString: string => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = string;
+      return wrapper.firstElementChild;
+  }
+};
 function postToHtmlElement(post) {
-    const wrapper = document.createElement('div');
-    const answerClass = answerButtonClass(post.postId);
-
-    wrapper.innerHTML = `
+    const element = tag.fromString(`
       <article id="post${post.postId}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
-        <button onclick="selectAnswers(${post.postId})" class="answers ${answerClass}">answers</button>
+        <button onclick="selectAnswers(${post.postId})" class="answers ${answerButtonClass(post.postId)}">answers</button>
         <span class="counter">${postOrder.indexOf(post.postId) + 1}</span>
         ${ifExists(post.reference, x => `
         <blockquote id="post${post.postId}">${html.post(x)}</blockquote>`)}
         ${html.post(post)}
-      </article>`;
-    const element = wrapper.firstElementChild;
+      </article>`);
     element.item = post;
     return element;
 }
@@ -268,12 +270,11 @@ const addHighlights = text => !text
         .replace(legendPattern,
             (match, p1, p2, p3, o, s) => `${p1}<abbr title="${legend[p2]}">${p2}</abbr>${p3}`);
 
-function formatDate(date) {
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    return `${months[date.getMonth()]} ${date.getDate()}, ${xx(date.getHours())}:${xx(date.getMinutes())}:${xx(date.getSeconds())}`;
-}
-
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const xx = x => (x < 10 ? '0' : '') + x;
+const formatDate = date =>
+    `${months[date.getMonth()]} ${date.getDate()}, ${xx(date.getHours())}:${xx(date.getMinutes())}:${xx(date.getSeconds())}`;
+
 
 ////////////////////
 // parse 8chan posts
@@ -309,7 +310,6 @@ function checkForNewPosts() {
             console.log(`empty threads\n${emptyThreads}`);
 
             newPosts.sort((a, b) => b['timestamp'] - a['timestamp']);
-            newPosts.forEach(p => p.isNew = true);
             posts.unshift(...newPosts);
             postOrder.push(...(newPosts.map(p => p.postId).reverse()));
             render(posts);
@@ -334,7 +334,6 @@ function getPostsByThread(id) {
             .filter((p) => p.trip === '!UW.yye1fxo');
 
         for (const newPost of newPosts) {
-            newPost.threadId = '' + id;
             referencePattern.lastIndex = 0;
             if (referencePattern.test(newPost.text)) {
                 referencePattern.lastIndex = 0;
@@ -347,9 +346,8 @@ function getPostsByThread(id) {
     });
 }
 
-function getJson(url) {
-    return fetch(url).then(response => response.json());
-}
+const getJson = url => fetch(url).then(response => response.json());
+
 
 function parse8chanPost(post, threadId) {
     const getImgUrl = (chanPost) => `https://media.8ch.net/file_store/${chanPost.tim}${chanPost.ext}`;
@@ -386,6 +384,8 @@ function parse8chanPost(post, threadId) {
     }
     newPost.source = '8chan_cbts';
     newPost.link = `https://8ch.net/cbts/res/${threadId}.html#${newPost.postId}`;
+    newPost.threadId = '' + threadId;
+    newPost.isNew = true;
     return newPost;
 }
 
