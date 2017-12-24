@@ -17,7 +17,7 @@
   <script src="data/cbtsTrip8chanPosts.js"></script>
   <script src="main.js"></script>
 </head>
-<body class="answers-disabled">
+<body>
 <header class="row">
   <div>
     <input type="search" placeholder="type to filter..." list="hints">
@@ -29,14 +29,14 @@
     <div id="status"></div>
   </div>
   <div class="row">
+    <button onclick="toggleDialog()">🎅</button>
     <!--<textarea placeholder="paste new answer json here" id="paste"></textarea>-->
     <textarea id="Copy" placeholder="click select-all copy"></textarea>
     <button onclick="copyAnswers()" class="answers">Copy edited answers</button>
     <!--<button onclick="storeLocalAnswers()" title="Save answers in your personal browser database">Save</button>-->
     <!--<button onclick="loadLocalAnswers()" title="Load answers from your personal browser database">Load</button>-->
+    <button onclick="toggleAnswers()">Toggle Answers</button>
   </div>
-  <button onclick="toggleDialog()">🎅🏻</button>
-  <button onclick="toggleAnswers()">Toggle Answers</button>
 </header>
 <main>
   <section></section>

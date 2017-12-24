@@ -414,12 +414,16 @@ function cleanHtmlText(htmlText) {
 // html functions
 ////////////////////
 
+const ifElement = (selector, callback) => {
+    const element = document.querySelector(selector);
+    if(element) return callback(element);
+};
+
 function copyAnswers() {
-    const selectedArticle = document.querySelector(`article.selected`);
-    if (selectedArticle) {
+    ifElement('article.selected', selectedArticle => {
         const postId = selectedArticle.item.postId;
         editedAnswers[postId] = editor.value();
-    }
+    });
 
     const copyTextarea = document.querySelector('#Copy');
     copyTextarea.value = JSON.stringify(editedAnswers, null, 2);
@@ -434,8 +438,7 @@ function copyAnswers() {
 }
 
 function resetAnswer() {
-    const selectedArticle = document.querySelector(`article.selected`);
-    if (selectedArticle) {
+    ifElement('article.selected', selectedArticle => {
         const postId = selectedArticle.item.postId;
         delete editedAnswers[postId];
         const value = answers[postId] || '';
@@ -444,19 +447,19 @@ function resetAnswer() {
             setPreview(editor);
         }
         selectedArticle.querySelector('article button').className = `answers ${value ? '' : 'empty'}`;
-    }
+    });
 }
+const answerIsEdited = postId => (!answers[postId] && editor.value().length) || (answers[postId] && answers[postId] !== editor.value());
 
 function selectAnswers(selectedPostId) {
-    const selectedArticle = document.querySelector(`article.selected`);
-    if (selectedArticle) {
+    ifElement('article.selected', selectedArticle => {
         const postId = selectedArticle.item.postId;
-        if ((!answers[postId] && editor.value().length) || (answers[postId] && answers[postId] !== editor.value())) {
+        if (answerIsEdited(postId)) {
             editedAnswers[postId] = editor.value();
             selectedArticle.querySelector('article button').className = `answers edited`
         }
         selectedArticle.classList.remove('selected');
-    }
+    });
     if (!selectedPostId) {
         document.querySelector('aside h1').innerHTML = `Answers`;
         editor.value('');
@@ -482,13 +485,14 @@ function selectAnswers(selectedPostId) {
 }
 
 function storeLocalAnswers() {
-    const selectedArticle = document.querySelector(`article.selected`);
-    if (selectedArticle) {
+    ifElement('article.selected', selectedArticle => {
         const postId = selectedArticle.item.postId;
         editedAnswers[postId] = editor.value();
-    }
+    });
     localStorage.setItem('answers', JSON.stringify(editedAnswers));
 }
+
+
 
 function loadLocalAnswers() {
     const newAnswers = localStorage.getItem('answers');
