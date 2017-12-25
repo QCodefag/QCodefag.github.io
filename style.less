@@ -22,7 +22,7 @@ body>header input[type=search] {
   padding: 5px 10px;
   border-radius: 100px;
   border: 1px solid hsl(0, 0%, 90%);
-  min-width: 300px;
+  width: 250px;
 }
 main {
   display: flex;
@@ -71,12 +71,14 @@ article {
 }
 article.selected {
   background-color: hsl(208, 70%, 98%);
-  box-shadow: 0 1px 4px 0px hsla(0, 0%, 0%, 0.2);
+  box-shadow: 0 1px 4px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .text {
   max-width: 100%;
   white-space: pre-wrap;
+  //noinspection CssInvalidPropertyValue
+  word-break: break-word;
 }
 .row {
   display: flex;
@@ -234,6 +236,12 @@ Answers toggle
   }
   [onclick="toggleAnswers()"] {
     display: none;
+  }
+}
+
+@media screen and (max-width: 480px){
+  [type=search] {
+    width: 250px;
   }
 }
 

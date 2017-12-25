@@ -185,49 +185,37 @@ function toggleDialog() {
 // rendering
 ////////////////////
 
-function render(items) {
+function render(posts) {
     const container = document.querySelector('section');
     container.innerHTML = '';
-    for (const item of items) {
-        container.appendChild(postToHtmlElement(item));
+    let lastDate;
+    for (const post of posts) {
+        // const newDate = new Date(post.timestamp * 1000);
+        // newDate.setHours(0,0,0,0);
+        // if(!lastDate || newDate.getTime() != lastDate.getTime()) {
+        //     container.appendChild(dateToHtmlElement(newDate));
+        //     lastDate = newDate;
+        // }
+        container.appendChild(postToHtmlElement(post));
     }
     initSearch();
     selectAnswers(null);
 }
+
 const tag = {
-  fromString: string => {
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = string;
-      return wrapper.firstElementChild;
-  }
+    fromString: string => {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = string;
+        return wrapper.firstElementChild;
+    }
 };
-function postToHtmlElement(post) {
-    const element = tag.fromString(`
-      <article id="post${post.postId}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
-        <button onclick="selectAnswers(${post.postId})" class="answers ${answerButtonClass(post.postId)}">answers</button>
-        <span class="counter">${postOrder.indexOf(post.postId) + 1}</span>
-        ${ifExists(post.reference, x => `
-        <blockquote id="post${post.postId}">${html.post(x)}</blockquote>`)}
-        ${html.post(post)}
-      </article>`);
-    element.item = post;
-    return element;
-}
-
-const answerButtonClass = (postId) =>
-    editedAnswers[postId]
-        ? 'edited'
-        : answers[postId] && answers[postId].length
-        ? ''
-        : 'empty';
-
-const html = {};
-html.post = (post) => {
-    if (!post) return '';
-    const date = new Date(post.timestamp * 1000);
-    return `
+const html = {
+    post: (post) => {
+        if (!post) return '';
+        const date = new Date(post.timestamp * 1000);
+        return `
         <header>
-          <time datetime="${date.toISOString()}">${formatDate(date)}</time>
+          <time datetime="${date.toISOString()}">${formatDate(date)}, ${formatTime(date)}</time>
           
           ${ifExists(post.subject, x => `
           <span class="subject" title="subject">${x}</span>`)}
@@ -250,15 +238,43 @@ html.post = (post) => {
         ${forAll(post.extraImageUrls, post.isNew ? html.img : pipe(localImgSrc, html.img))}
         
         <div class="text">${addHighlights(post.text)}</div>`;
+    },
+    img: (src) => {
+        if (!src) return '';
+        return `<a href="${src}" target="_blank"><img src="${src}" class="contain" width="300" height="300"></a>`;
+    },
 };
-html.img = (src) => !src
-    ? ''
-    : `<a href="${src}" target="_blank"><img src="${src}" class="contain" width="300" height="300"></a>`;
+
+function dateToHtmlElement(date) {
+    return tag.fromString(`
+    <div><time datetime="${date.toISOString()}">${formatDate(date)}</time></div>
+    `);
+}
+
+function postToHtmlElement(post) {
+    const element = tag.fromString(`
+      <article id="post${post.postId}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
+        <button onclick="selectAnswers(${post.postId})" class="answers ${answerButtonClass(post.postId)}">answers</button>
+        <span class="counter">${postOrder.indexOf(post.postId) + 1}</span>
+        ${ifExists(post.reference, x => `
+        <blockquote id="post${post.postId}">${html.post(x)}</blockquote>`)}
+        ${html.post(post)}
+      </article>`);
+    element.item = post;
+    return element;
+}
+
+const answerButtonClass = (postId) =>
+    editedAnswers[postId]
+        ? 'edited'
+        : answers[postId] && answers[postId].length
+        ? ''
+        : 'empty';
 
 // 1,10925,12916,13092,13215,59684,93287,93312,14795558,14797863,147023341,148029633,148029962,148031295,148032210,148032910,148033178,148033932,148136656,1476689362
 const forAll = (items, htmlCallback) => items && items instanceof Array ? items.map(htmlCallback).join('') : '';
 const ifExists = (item, htmlCallback) => item ? htmlCallback(item) : '';
-const localImgSrc = src => 'data/images/'+src.split('/').slice(-1)[0];
+const localImgSrc = src => 'data/images/' + src.split('/').slice(-1)[0];
 const pipe = (...funcs) => i => funcs.reduce((p, c) => c(p), i);
 
 const legendPattern = new RegExp(`([^a-zA-Z])(${Object.keys(legend).join('|')})([^a-zA-Z])`, 'g');
@@ -277,9 +293,8 @@ const addHighlights = text => !text
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const xx = x => (x < 10 ? '0' : '') + x;
-const formatDate = date =>
-    `${months[date.getMonth()]} ${date.getDate()}, ${xx(date.getHours())}:${xx(date.getMinutes())}:${xx(date.getSeconds())}`;
-
+const formatDate = date => `${months[date.getMonth()]} ${date.getDate()}`;
+const formatTime = date => `${xx(date.getHours())}:${xx(date.getMinutes())}:${xx(date.getSeconds())}`;
 
 ////////////////////
 // parse 8chan posts
@@ -351,6 +366,26 @@ function getPostsByThread(id) {
     });
 }
 
+// NEWS
+const flatten = (p, c) => p.concat(c);
+
+const fetchNewsUrls = () => getJson('https://8ch.net/cbts/res/4485.json')
+    .then(result => result.posts.map(p => parse8chanPost(p, '4485')).map(getUrlLinks).reduce(flatten, []));
+
+const getUrlLinks = post => post.text ? post.text.split('\n').filter(l => l.startsWith('http')) : [];
+
+const extractMetaData = element => {
+
+};
+
+const buildMetaData = () => {
+    fetchNewsUrls().then(urls => {
+        for(const frame of urls.map(url => `<iframe src="${url}"></iframe>`).map(tag.fromString)) {
+
+        }
+    });
+};
+
 const getJson = url => fetch(url).then(response => response.json());
 
 
@@ -416,7 +451,7 @@ function cleanHtmlText(htmlText) {
 
 const ifElement = (selector, callback) => {
     const element = document.querySelector(selector);
-    if(element) return callback(element);
+    if (element) return callback(element);
 };
 
 function copyAnswers() {
@@ -449,6 +484,7 @@ function resetAnswer() {
         selectedArticle.querySelector('article button').className = `answers ${value ? '' : 'empty'}`;
     });
 }
+
 const answerIsEdited = postId => (!answers[postId] && editor.value().length) || (answers[postId] && answers[postId] !== editor.value());
 
 function selectAnswers(selectedPostId) {
@@ -491,7 +527,6 @@ function storeLocalAnswers() {
     });
     localStorage.setItem('answers', JSON.stringify(editedAnswers));
 }
-
 
 
 function loadLocalAnswers() {

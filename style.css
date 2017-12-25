@@ -22,7 +22,7 @@ body > header input[type=search] {
   padding: 5px 10px;
   border-radius: 100px;
   border: 1px solid #e6e6e6;
-  min-width: 300px;
+  width: 250px;
 }
 main {
   display: flex;
@@ -69,11 +69,12 @@ article {
 }
 article.selected {
   background-color: #f6fafd;
-  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
 }
 .text {
   max-width: 100%;
   white-space: pre-wrap;
+  word-break: break-word;
 }
 .row {
   display: flex;
@@ -221,6 +222,11 @@ Answers toggle
   }
   [onclick="toggleAnswers()"] {
     display: none;
+  }
+}
+@media screen and (max-width: 480px) {
+  [type=search] {
+    width: 250px;
   }
 }
 .answers-disabled .answers {
