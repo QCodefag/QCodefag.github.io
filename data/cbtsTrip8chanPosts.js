@@ -1,5 +1,61 @@
 const cbtsTrip8chanPosts = [
     {
+        "postId": "10925",
+        "userId": "0a9612",
+        "timestamp": 1511983276,
+        "name": "Q",
+        "trip": "!ITPb.qbhqo",
+        "text": "Snow White utilized/activated to silence.\nThis was not anticipated. \nControl / protection lost. \nRouting through various networks ('jumpers') randomly has created connection/sec issues.\nWorking to resolve.\nSelect people removed.\nStay strong.\nWe are winning.\nMore to follow.\nQ\n",
+        "threadId": "10820",
+        "source": "8chan_cbts",
+        "link": "https://8ch.net/cbts/res/10820.html#10925"
+    },
+    {
+        "postId": "12916",
+        "userId": "249a4f",
+        "timestamp": 1512018338,
+        "name": "Q ",
+        "trip": "!ITPb.qbhqo",
+        "text": "Where is BO?\nWhat is the purpose?\nWho fired?\nWhen?\nReconcile.\nQ\n",
+        "imageUrl": "https://media.8ch.net/file_store/7bfad299ab69639f5373184336f45fa831f5b789f36be6676c2eb5e74deb965b.png",
+        "threadId": "12535",
+        "source": "8chan_cbts",
+        "link": "https://8ch.net/cbts/res/12535.html#12916"
+    },
+    {
+        "postId": "13092",
+        "userId": "7ebe7c",
+        "timestamp": 1512020317,
+        "name": "Q ",
+        "trip": "!ITPb.qbhqo",
+        "text": "Focus on Hussein.\nRevelations coming very very soon.\nHUMA - SA - Hussein.\nHLR (first).\nCivil rights attorney.\n13th District - Sen.\nDNC.\nHussein v HRC v McCain.\nWhy is this relevant?\nFollow the money pre-pres.\nFollow the connections pre-pres.\nWhy does Hussein travel ahead of POTUS?\nWhy did Hussein travel behind POTUS? \nThink Asia.\nThink NK.\nWhat was told re: NK during the past 8 years?\nWhat dramatic shift occurred re: NK post election of POTUS?\nReconcile.\nDefine hostage.\nThe Sum of all Fears. \nWhy are sexual harassment claims all appearing suddenly? \nCoincidence? \nWhat is a pill?\nWhen is it hard to swallow? \nHow do you remove your enemies from positions of influence and authority? \nDefine stages. \nDefine puppets.\nDefine puppet handlers. \nDefine proxy war.\nDefine proxy war. \nDefine proxy war.\nExpand your thinking.\nWhy is Justice stalling release of c-level info?\nThink. \nDoes POTUS control all matters classified? \nThink.\nHave faith.\nThese people are losers!\nQ\n",
+        "threadId": "12535",
+        "source": "8chan_cbts",
+        "link": "https://8ch.net/cbts/res/12535.html#13092"
+    },
+    {
+        "postId": "13215",
+        "userId": "7db625",
+        "timestamp": 1512021696,
+        "name": "Q ",
+        "trip": "!ITPb.qbhqo",
+        "text": "What if NK had miniature nuke payload delivery in 2004?\nWhat if NK had ICBM capability since 2009?\nWhat if the previous tests that failed were staged?\nWhy would this be relevant?\nWho is involved and why?\nBiggest cover up in our history.\nU1 - CA - EU - ASIA\\NK.\nIran deal.\nRussian reset. \nQ\n",
+        "threadId": "12535",
+        "source": "8chan_cbts",
+        "link": "https://8ch.net/cbts/res/12535.html#13215"
+    },
+    {
+        "postId": "13282",
+        "userId": "7db625",
+        "timestamp": 1512022377,
+        "name": "Q ",
+        "trip": "!ITPb.qbhqo",
+        "text": "Sidley Austin.\nHappy hunting.\nQ\n",
+        "threadId": "12535",
+        "source": "8chan_cbts",
+        "link": "https://8ch.net/cbts/res/12535.html#13282"
+    },
+    {
         "postId": "13601",
         "userId": "47b2cc",
         "timestamp": 1512026631,
