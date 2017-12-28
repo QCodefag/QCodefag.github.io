@@ -15,7 +15,10 @@
   <script src="data/polTrip4chanPosts.js"></script>
   <script src="data/polTrip8chanPosts.js"></script>
   <script src="data/cbtsTrip8chanPosts.js"></script>
-  <script src="main.js"></script>
+  <script src="data/legend.js"></script>
+  <script src="data/news.js"></script>
+  <script src="core.js"></script>
+  <script src="index.js"></script>
 </head>
 <body>
 <header class="row">
@@ -31,12 +34,10 @@
   <div class="stretch row">
     <button onclick="toggleDialog()">🎅</button>
   </div>
-  <div class="row">
-    <!--<textarea placeholder="paste new answer json here" id="paste"></textarea>-->
+  <div class="row hide-mobile">
+    <a href="news.html">Q related news</a>
     <textarea id="Copy" placeholder="click select-all copy"></textarea>
     <button onclick="copyAnswers()" class="answers">Copy edited answers</button>
-    <!--<button onclick="storeLocalAnswers()" title="Save answers in your personal browser database">Save</button>-->
-    <!--<button onclick="loadLocalAnswers()" title="Load answers from your personal browser database">Load</button>-->
     <button onclick="toggleAnswers()">Toggle Answers</button>
   </div>
 </header>

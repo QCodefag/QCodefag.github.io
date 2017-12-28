@@ -1,0 +1,103 @@
+html {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  line-height: 1.15;
+  font-size: 14px;
+}
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+body > header {
+  height: 30px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  position: relative;
+}
+body > header input[type=search] {
+  padding: 5px 10px;
+  border-radius: 100px;
+  border: 1px solid #e6e6e6;
+  width: 250px;
+}
+main {
+  height: calc(100vh - 50px);
+  overflow-y: auto;
+}
+section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+article {
+  position: relative;
+  border-radius: 6px;
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin: 5px;
+  max-width: 400px;
+}
+article a {
+  text-decoration: none;
+  color: inherit;
+}
+article a:hover {
+  color: #34459d;
+}
+article small {
+  color: #808080;
+  margin-left: 20px;
+  text-align: center;
+  display: block;
+}
+.text {
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.row {
+  display: flex;
+}
+.stretch {
+  flex: 1;
+}
+a[target=_blank]::after {
+  content: '→';
+}
+.center {
+  text-align: center;
+}
+img {
+  max-width: 100%;
+}
+.contain {
+  object-fit: contain;
+  background: #f2f2f2;
+  margin-right: 20px;
+}
+button {
+  background-color: white;
+  padding: 6px 20px;
+  line-height: 10px;
+  border: 3px solid #f2f2f2;
+  text-transform: uppercase;
+  transition: all .5s;
+}
+button:active {
+  background-color: #f2f2f2;
+}
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.sticky time {
+  background-color: white;
+  padding: 0 20px;
+}

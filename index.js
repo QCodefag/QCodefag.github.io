@@ -1,76 +1,3 @@
-const legend = {
-    'Adm R': 'Admiral Michael S. Rogers - Director of the NSA',
-    'AF1': 'Air Force 1 - POTUS plane',
-    'AG': 'Attorney General',
-    'Anon': 'Anonymous',
-    'ANTIFA': 'Anti-Fascists, Soros backed domestic terrorists',
-    'BIS': 'Bank for International Settlements',
-    'BO': 'Barack Obama',
-    'BOD': 'Board of Directors',
-    'BP': 'Border Patrol',
-    'CF': 'Clinton Foundation',
-    'CIA': 'Central Intelligence Agency',
-    'CS': 'Civil Service',
-    'CTR': 'Correct The Record',
-    'DC': 'District of Columbia',
-    'DJT': 'President Donald John Trump',
-    'DNC': 'Democratic National Committee',
-    'DOE': 'Department Of Energy',
-    'DOJ': 'Department Of Justice',
-    'D\'s': 'Democrats',
-    'EMS': 'Emergency Medical Services',
-    'EU': 'European Union',
-    'F&F': 'Fast and Furious - Feinstein\'s failed gun sale attempt',
-    'f2f': 'Face to Face',
-    'FB': 'Facebook',
-    'FBI': 'Federal Bureau of Investigation',
-    'FED': 'Federal Reserve',
-    'FOIA': 'Freedom Of Information Act',
-    'HI': 'Hawaii',
-    'HRC': 'Hillary Rodham Clinton',
-    'HS': 'Homeland Security',
-    'HUMA': 'Harvard University Muslim Alumni',
-    'H-wood': 'Hollywood',
-    'IC': 'Intelligence Community',
-    'ID': 'Identification',
-    'IRS': 'Internal Revenue Agency ',
-    'ISIS': 'Israeli Secret Intelligence Service',
-    'JA': 'Julian Assange',
-    'JFK': 'John Fitzgereld Kennedy ',
-    'JK': 'John Kerry, Jared Kushner',
-    'KKK': 'Klu Klux Klan - started by D\'s',
-    'KSA': 'Kingdom of Saudi Arabia',
-    'LV': 'Las Vegas',
-    'MB': 'Muslim Brotherhood',
-    'MI': 'Military Intelligence',
-    'ML': 'Marshal Law',
-    'MM': 'Media Matters',
-    'MS-13': 'Latino Drug Cartel',
-    'MSM': 'Mainstream Media',
-    'NG': 'National Guard',
-    'NK': 'North Korea, also NORK, NOK',
-    'NP': 'Non-Profit',
-    'NSA': 'National Security Agency',
-    'OP': 'Original Poster',
-    'PG': 'Pizzagate/Pedogate',
-    'PM': 'Prime Minister',
-    'POTUS': 'President of the United States ',
-    'RNC': 'Republican National Committee',
-    'RR': 'Rod Rosenstein',
-    'R\'s': 'Republicans',
-    'SA': 'Saudi Arabia',
-    'SAP': 'Special Access Programs',
-    'SC': 'Supreme Court',
-    'SK': 'South Korea',
-    'SS': 'Secret Service',
-    'ST': 'Seal Team (eg. Seal Team 6)',
-    'U1': 'Uranium 1',
-    'US': 'United States  ',
-    'USSS': 'United States Secret Service',
-    'VJ': 'Valerie Jarret ',
-    'WH': 'White House',
-    'WW': 'World War, and possibly World Wide?'
-};
 let posts = [];
 let statusElement;
 let editor;
@@ -102,8 +29,7 @@ function main() {
         .concat(polNonTrip4chanPosts)
         .concat(polTrip4chanPosts)
         .concat(polTrip8chanPosts)
-        .concat(cbtsTrip8chanPosts)
-    ;
+        .concat(cbtsTrip8chanPosts);
 
     posts.sort((a, b) => b.timestamp - a.timestamp);
     postOrder.push(...(posts.map(p => p.postId).reverse()));
@@ -188,27 +114,13 @@ function toggleDialog() {
 function render(posts) {
     const container = document.querySelector('section');
     container.innerHTML = '';
-    let lastDate;
     for (const post of posts) {
-        // const newDate = new Date(post.timestamp * 1000);
-        // newDate.setHours(0,0,0,0);
-        // if(!lastDate || newDate.getTime() != lastDate.getTime()) {
-        //     container.appendChild(dateToHtmlElement(newDate));
-        //     lastDate = newDate;
-        // }
         container.appendChild(postToHtmlElement(post));
     }
     initSearch();
     selectAnswers(null);
 }
 
-const tag = {
-    fromString: string => {
-        const wrapper = document.createElement('div');
-        wrapper.innerHTML = string;
-        return wrapper.firstElementChild;
-    }
-};
 const html = {
     post: (post) => {
         if (!post) return '';
@@ -272,10 +184,9 @@ const answerButtonClass = (postId) =>
         : 'empty';
 
 // 1,10925,12916,13092,13215,59684,93287,93312,14795558,14797863,147023341,148029633,148029962,148031295,148032210,148032910,148033178,148033932,148136656,1476689362
-const forAll = (items, htmlCallback) => items && items instanceof Array ? items.map(htmlCallback).join('') : '';
-const ifExists = (item, htmlCallback) => item ? htmlCallback(item) : '';
+
 const localImgSrc = src => 'data/images/' + src.split('/').slice(-1)[0];
-const pipe = (...funcs) => i => funcs.reduce((p, c) => c(p), i);
+
 
 const legendPattern = new RegExp(`([^a-zA-Z])(${Object.keys(legend).join('|')})([^a-zA-Z])`, 'g');
 
@@ -290,11 +201,6 @@ const addHighlights = text => !text
             (match) => `<strong>${match}</strong>`)
         .replace(legendPattern,
             (match, p1, p2, p3, o, s) => `${p1}<abbr title="${legend[p2]}">${p2}</abbr>${p3}`);
-
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const xx = x => (x < 10 ? '0' : '') + x;
-const formatDate = date => `${months[date.getMonth()]} ${date.getDate()}`;
-const formatTime = date => `${xx(date.getHours())}:${xx(date.getMinutes())}:${xx(date.getSeconds())}`;
 
 ////////////////////
 // parse 8chan posts
@@ -367,26 +273,6 @@ function getPostsByThread(id) {
 }
 
 // NEWS
-const flatten = (p, c) => p.concat(c);
-
-const fetchNewsUrls = () => getJson('https://8ch.net/cbts/res/4485.json')
-    .then(result => result.posts.map(p => parse8chanPost(p, '4485')).map(getUrlLinks).reduce(flatten, []));
-
-const getUrlLinks = post => post.text ? post.text.split('\n').filter(l => l.startsWith('http')) : [];
-
-const extractMetaData = element => {
-
-};
-
-const buildMetaData = () => {
-    fetchNewsUrls().then(urls => {
-        for(const frame of urls.map(url => `<iframe src="${url}"></iframe>`).map(tag.fromString)) {
-
-        }
-    });
-};
-
-const getJson = url => fetch(url).then(response => response.json());
 
 
 function parse8chanPost(post, threadId) {
@@ -556,6 +442,6 @@ function getAllAnswersUpdate() {
     return JSON.stringify(Object.assign({}, answers, editedAnswers), null, 2);
 }
 
-document.addEventListener('DOMContentLoaded', main, false);
-
 window.addEventListener('beforeunload', storeLocalAnswers);
+
+document.addEventListener('DOMContentLoaded', main, false);
