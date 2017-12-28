@@ -211,16 +211,13 @@ Answers toggle
   aside {
     display: none;
   }
+  .hide-mobile {
+    display: none;
+  }
   section {
     width: 100%;
   }
   .answers {
-    display: none;
-  }
-  .toggle-answers {
-    display: none;
-  }
-  [onclick="toggleAnswers()"] {
     display: none;
   }
 }

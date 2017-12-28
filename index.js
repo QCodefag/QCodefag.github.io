@@ -57,6 +57,10 @@ function initSearch() {
             .map(p => p.postId);
 
         applyFilter(ids);
+        if(value == '')
+            setParams({});
+        else
+            setParams({q: value});
     };
 
     const postLines = posts
@@ -83,6 +87,12 @@ function initSearch() {
     resultList.sort((a, b) => b.ids.size - a.ids.size);
     const datalist = document.querySelector('#hints');
     datalist.innerHTML = resultList.map(i => `<option label="${i.ids.size}">${i.line}</option>`).join('\n');
+
+    const query = getParams(location.search);
+    if('q' in query) {
+        searchElement.value = query.q;
+        searchElement.oninput();
+    }
 }
 
 function applyFilter(ids) {

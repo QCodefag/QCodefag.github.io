@@ -19,6 +19,11 @@ function initSearch(items, searchElement) {
             .map(p => p.id);
 
         applyFilter(ids);
+
+        if(value === '')
+            setParams({});
+        else
+            setParams({q: value});
     };
     const result = {};
     for (const item of items) {
@@ -33,6 +38,12 @@ function initSearch(items, searchElement) {
     resultList.sort((a, b) => b.ids.size - a.ids.size);
     const datalist = document.querySelector('#hints');
     datalist.innerHTML = resultList.map(i => `<option label="${i.ids.size}">${i.line}</option>`).join('\n');
+
+    const query = getParams(location.search);
+    if('q' in query) {
+        searchElement.value = query.q;
+        searchElement.oninput();
+    }
 }
 
 function initNews(newsItems) {
