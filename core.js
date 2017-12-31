@@ -1,8 +1,6 @@
 const getJson = url => fetch(url).then(response => response.json());
 
-
 const pipe = (...funcs) => i => funcs.reduce((p, c) => c(p), i);
-
 
 const forAll = (items, htmlCallback) => items && items instanceof Array ? items.map(htmlCallback).join('') : '';
 const ifExists = (item, htmlCallback) => item ? htmlCallback(item) : '';

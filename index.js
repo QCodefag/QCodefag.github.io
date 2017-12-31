@@ -32,7 +32,7 @@ function main() {
         .concat(cbtsTrip8chanPosts);
 
     posts.sort((a, b) => b.timestamp - a.timestamp);
-    postOrder.push(...(posts.map(p => p.postId).reverse()));
+    postOrder.push(...(posts.map(p => p.id || p.postId).reverse()));
 
     loadLocalAnswers();
     fetch('data/answers.json', {credentials: 'same-origin'})
@@ -40,7 +40,8 @@ function main() {
         answers = JSON.parse(json);
         render(posts);
     });
-    checkForNewPosts();
+    toggleAnswers();
+    // checkForNewPosts();
 }
 
 function initSearch() {
@@ -54,10 +55,10 @@ function initSearch() {
 
         const ids = posts
             .filter(p => p.text && keywordInText(p.text))
-            .map(p => p.postId);
+            .map(p => p.id || p.postId);
 
         applyFilter(ids);
-        if(value == '')
+        if (value == '')
             setParams({});
         else
             setParams({q: value});
@@ -66,7 +67,7 @@ function initSearch() {
     const postLines = posts
         .filter(p => p.text)
         .map(p => ({
-            id: p.postId,
+            id: p.id || p.postId,
             lines: p.text
                 .split('\n')
                 .map(t => t.trim().replace(/[.?]/g, ''))
@@ -89,7 +90,7 @@ function initSearch() {
     datalist.innerHTML = resultList.map(i => `<option label="${i.ids.size}">${i.line}</option>`).join('\n');
 
     const query = getParams(location.search);
-    if('q' in query) {
+    if ('q' in query) {
         searchElement.value = query.q;
         searchElement.oninput();
     }
@@ -98,7 +99,7 @@ function initSearch() {
 function applyFilter(ids) {
     let count = 0;
     for (const element of Array.from(document.querySelectorAll('article'))) {
-        if (ids.includes(element.item.postId)) {
+        if (ids.includes(element.item.id || element.item.postId)) {
             element.hidden = false;
             count++;
         } else {
@@ -161,9 +162,42 @@ const html = {
         
         <div class="text">${addHighlights(post.text)}</div>`;
     },
+    post2: (post) => {
+        if (!post) return '';
+        const date = new Date(post.timestamp * 1000);
+        return `
+        <header>
+          <time datetime="${date.toISOString()}">${formatDate(date)}, ${formatTime(date)}</time>
+          
+          ${ifExists(post.subject, x => `
+          <span class="subject" title="subject">${x}</span>`)}
+          
+          <span class="name" title="name">${post.name}</span>
+          
+          ${ifExists(post.trip, x => `
+          <span class="trip" title="trip">${x}</span>`)}
+              
+          ${ifExists(post.email, x => `
+          <span class="email" title="email">${x}</span>`)}
+              
+          <a href="${post.link}" target="_blank">${post.id}</a>
+        </header>
+        
+        ${forAll(post.images, html.img2)}
+        
+        <div class="text">${addHighlights(post.text)}</div>`;
+    },
     img: (src) => {
         if (!src) return '';
         return `<a href="${src}" target="_blank"><img src="${src}" class="contain" width="300" height="300"></a>`;
+    },
+    img2: (image) => {
+        if (!image) return '';
+        const url = localImgSrc(image.url);
+        return `<a href="${url}" target="_blank">
+          <span class="filename" title="file name">${image.filename}</span>
+          <img src="${url}" class="contain" width="300" height="300">
+        </a>`;
     },
 };
 
@@ -174,8 +208,18 @@ function dateToHtmlElement(date) {
 }
 
 function postToHtmlElement(post) {
-    const element = tag.fromString(`
-      <article id="post${post.postId}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
+
+    const element = tag.fromString(
+        post.source === '8chan_cbts' ?
+            `<article id="post${post.id}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
+          <button onclick="selectAnswers(${post.id})" class="answers ${answerButtonClass(post.id)}">answers</button>
+          <span class="counter">${postOrder.indexOf(post.id) + 1}</span>
+          ${forAll(post.references, x => `
+          <blockquote id="post${post.id}">${html.post2(x)}</blockquote>`)}
+          ${html.post2(post)}
+        </article>`
+            :
+            `<article id="post${post.postId}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
         <button onclick="selectAnswers(${post.postId})" class="answers ${answerButtonClass(post.postId)}">answers</button>
         <span class="counter">${postOrder.indexOf(post.postId) + 1}</span>
         ${ifExists(post.reference, x => `
@@ -247,7 +291,7 @@ function checkForNewPosts() {
 
             newPosts.sort((a, b) => b['timestamp'] - a['timestamp']);
             posts.unshift(...newPosts);
-            postOrder.push(...(newPosts.map(p => p.postId).reverse()));
+            postOrder.push(...(newPosts.map(p => p.id).reverse()));
             render(posts);
             statusElement.textContent = '';
         });
@@ -274,7 +318,7 @@ function getPostsByThread(id) {
             if (referencePattern.test(newPost.text)) {
                 referencePattern.lastIndex = 0;
                 const referenceId = referencePattern.exec(newPost.text)[1];
-                newPost.reference = threadPosts.find((p) => p.postId == referenceId);
+                newPost.references = threadPosts.filter((p) => p.postId == referenceId);
             }
         }
         console.log(`added ${newPosts.length} thread ${id}`);
@@ -286,10 +330,13 @@ function getPostsByThread(id) {
 
 
 function parse8chanPost(post, threadId) {
-    const getImgUrl = (chanPost) => `https://media.8ch.net/file_store/${chanPost.tim}${chanPost.ext}`;
+    const getImgUrl = (chanPost) => ({
+      url: `https://media.8ch.net/file_store/${chanPost.tim}${chanPost.ext}`,
+      filename: chanPost.filename,
+    });
 
     const keyMap = {
-        'no': 'postId',
+        'no': 'id',
         'id': 'userId',
         'time': 'timestamp',
         'title': 'title',
@@ -300,17 +347,17 @@ function parse8chanPost(post, threadId) {
         'sub': 'subject',
         'tim': 'imageUrl',
         'extra_files': 'extraImageUrls',
-        'filename': 'fileName',
+        // 'filename': 'fileName',
     };
 
-    const newPost = {};
+    const newPost = {'images': []};
     for (const key of Object.keys(keyMap)) {
         if (post[key] == null) continue;
 
         if (key == 'tim')
-            newPost[keyMap[key]] = getImgUrl(post);
+            newPost['images'].push(getImgUrl(post));
         else if (key == 'extra_files')
-            newPost[keyMap[key]] = post[key].map(getImgUrl);
+            newPost['images'].push(...post[key].map(getImgUrl));
         else if (key == 'no')
             newPost[keyMap[key]] = post[key].toString();
         else if (key == 'com')
@@ -319,7 +366,7 @@ function parse8chanPost(post, threadId) {
             newPost[keyMap[key]] = post[key];
     }
     newPost.source = '8chan_cbts';
-    newPost.link = `https://8ch.net/cbts/res/${threadId}.html#${newPost.postId}`;
+    newPost.link = `https://8ch.net/cbts/res/${threadId}.html#${newPost.id}`;
     newPost.threadId = '' + threadId;
     newPost.isNew = true;
     return newPost;
