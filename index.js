@@ -6,7 +6,10 @@ let editedAnswers = {};
 let postOrder = [];
 
 function main() {
-    editor = new SimpleMDE({element: document.getElementById('answers'), spellChecker: false});
+    editor = new SimpleMDE({
+        element: document.getElementById('answers'),
+        spellChecker: false
+    });
     if (!editor.isPreviewActive()) {
         editor.togglePreview();
     }
@@ -29,6 +32,7 @@ function main() {
         .concat(polNonTrip4chanPosts)
         .concat(polTrip4chanPosts)
         .concat(polTrip8chanPosts)
+        .concat(cbtsNonTrip8chanPosts)
         .concat(cbtsTrip8chanPosts);
 
     posts.sort((a, b) => b.timestamp - a.timestamp);
@@ -36,10 +40,11 @@ function main() {
 
     loadLocalAnswers();
     fetch('data/answers.json', {credentials: 'same-origin'})
-        .then(result => result.text()).then(json => {
-        answers = JSON.parse(json);
-        render(posts);
-    });
+        .then(result => result.text())
+        .then(json => {
+            answers = JSON.parse(json);
+            render(posts);
+        });
     toggleAnswers();
     // checkForNewPosts();
 }
@@ -50,7 +55,9 @@ function initSearch() {
         const value = searchElement.value;
 
         const keywordInText = value === value.toLowerCase()
-            ? text => text.toLowerCase().includes(value)
+            ? text => text
+                .toLowerCase()
+                .includes(value)
             : text => text.includes(value);
 
         const ids = posts
@@ -58,17 +65,19 @@ function initSearch() {
             .map(p => p.id || p.postId);
 
         applyFilter(ids);
-        if (value == '')
+        if (value == '') 
             setParams({});
-        else
+        else 
             setParams({q: value});
-    };
+        }
+    ;
 
     const postLines = posts
         .filter(p => p.text)
         .map(p => ({
             id: p.id || p.postId,
-            lines: p.text
+            lines: p
+                .text
                 .split('\n')
                 .map(t => t.trim().replace(/[.?]/g, ''))
         }));
@@ -76,18 +85,23 @@ function initSearch() {
     const result = {};
     for (const post of postLines) {
         for (const line of post.lines) {
-            if (line == '') continue;
-            if (!result[line]) result[line] = new Set();
+            if (line == '') 
+                continue;
+            if (!result[line]) 
+                result[line] = new Set();
             result[line].add(post.id);
         }
     }
-    const resultList = Object.keys(result)
+    const resultList = Object
+        .keys(result)
         .map(k => ({line: k, ids: result[k]}))
         .filter(a => a.ids.size > 2);
 
     resultList.sort((a, b) => b.ids.size - a.ids.size);
     const datalist = document.querySelector('#hints');
-    datalist.innerHTML = resultList.map(i => `<option label="${i.ids.size}">${i.line}</option>`).join('\n');
+    datalist.innerHTML = resultList
+        .map(i => `<option label="${i.ids.size}">${i.line}</option>`)
+        .join('\n');
 
     const query = getParams(location.search);
     if ('q' in query) {
@@ -106,21 +120,26 @@ function applyFilter(ids) {
             element.hidden = true;
         }
     }
-    document.querySelector('#count').textContent = `${count}`;
+    document
+        .querySelector('#count')
+        .textContent = `${count}`;
 }
 
 function toggleAnswers() {
-    document.body.classList.toggle('answers-disabled')
+    document
+        .body
+        .classList
+        .toggle('answers-disabled')
 }
 
 function toggleDialog() {
     const dialog = document.querySelector('.dialog');
-    dialog.classList.toggle('open');
+    dialog
+        .classList
+        .toggle('open');
 }
 
-////////////////////
-// rendering
-////////////////////
+// RENDERING
 
 function render(posts) {
     const container = document.querySelector('section');
@@ -134,71 +153,93 @@ function render(posts) {
 
 const html = {
     post: (post) => {
-        if (!post) return '';
+        if (!post) 
+            return '';
         const date = new Date(post.timestamp * 1000);
+        const edate = new Date(post.edited * 1000);
         return `
         <header>
-          <time datetime="${date.toISOString()}">${formatDate(date)}, ${formatTime(date)}</time>
-          
-          ${ifExists(post.subject, x => `
-          <span class="subject" title="subject">${x}</span>`)}
-          
-          <span class="name" title="name">${post.name}</span>
-          
-          ${ifExists(post.trip, x => `
-          <span class="trip" title="trip">${x}</span>`)}
-              
-          ${ifExists(post.email, x => `
-          <span class="email" title="email">${x}</span>`)}
-              
-          <a href="${post.link}" target="_blank">${post.postId}</a>
+            <time datetime="${date.toISOString()}">${formatDate(date)}, ${formatTime(date)}</time>
+
+            ${ifExists(post.subject, x => `
+            <span class="subject" title="subject">${x}</span>`)}
+
+            <span class="name" title="name">${post.name}</span>
+
+            ${ifExists(post.trip, x => `
+            <span class="trip" title="trip">${x}</span>`)}
+
+            ${ifExists(post.email, x => `
+            <span class="email" title="email">${x}</span>`)}
+
+            ${ifExists(post.userId, x => `
+            <span class="userid" title="userid">ID: ${x}</span>`)}
+
+            <a href="${post.link}" target="_blank">${post.postId}</a>
+
+            ${ifExists(post.edited, x => `
+            <span class="edited" title="${edate.toISOString()}">Edited at ${formatDate(edate)}, ${formatTime(edate)}</span>`)}
         </header>
-        
+
         ${ifExists(post.fileName, x => `
         <span class="filename" title="file name">${x}</span>`)}
-        
-        ${ifExists(post.imageUrl, post.isNew ? html.img : pipe(localImgSrc, html.img))}
-        ${forAll(post.extraImageUrls, post.isNew ? html.img : pipe(localImgSrc, html.img))}
-        
+
+        ${ifExists(post.imageUrl, post.isNew
+            ? html.img
+            : pipe(localImgSrc, html.img))}
+        ${forAll(post.extraImageUrls, post.isNew
+            ? html.img
+            : pipe(localImgSrc, html.img))}
+
         <div class="text">${addHighlights(post.text)}</div>`;
     },
     post2: (post) => {
-        if (!post) return '';
+        if (!post) 
+            return '';
         const date = new Date(post.timestamp * 1000);
+        const edate = new Date(post.edited * 1000);
         return `
         <header>
-          <time datetime="${date.toISOString()}">${formatDate(date)}, ${formatTime(date)}</time>
-          
-          ${ifExists(post.subject, x => `
-          <span class="subject" title="subject">${x}</span>`)}
-          
-          <span class="name" title="name">${post.name}</span>
-          
-          ${ifExists(post.trip, x => `
-          <span class="trip" title="trip">${x}</span>`)}
-              
-          ${ifExists(post.email, x => `
-          <span class="email" title="email">${x}</span>`)}
-              
-          <a href="${post.link}" target="_blank">${post.id}</a>
+            <time datetime="${date.toISOString()}">${formatDate(date)}, ${formatTime(date)}</time>
+
+            ${ifExists(post.subject, x => `
+            <span class="subject" title="subject">${x}</span>`)}
+
+            <span class="name" title="name">${post.name}</span>
+
+            ${ifExists(post.trip, x => `
+            <span class="trip" title="trip">${x}</span>`)}
+
+            ${ifExists(post.email, x => `
+            <span class="email" title="email">${x}</span>`)}
+
+            ${ifExists(post.userId, x => `
+            <span class="userid" title="userid">ID: ${x}</span>`)}
+
+            <a href="${post.link}" target="_blank">${post.id}</a>
+
+            ${ifExists(post.edited, x => `
+            <span class="edited" title="${edate.toISOString()}">Edited at ${formatDate(edate)}, ${formatTime(edate)}</span>`)}
         </header>
-        
+
         ${forAll(post.images, html.img2)}
-        
+
         <div class="text">${addHighlights(post.text)}</div>`;
     },
     img: (src) => {
-        if (!src) return '';
+        if (!src) 
+            return '';
         return `<a href="${src}" target="_blank"><img src="${src}" class="contain" width="300" height="300"></a>`;
     },
     img2: (image) => {
-        if (!image) return '';
+        if (!image) 
+            return '';
         const url = localImgSrc(image.url);
         return `<a href="${url}" target="_blank">
           <span class="filename" title="file name">${image.filename}</span>
           <img src="${url}" class="contain" width="300" height="300">
         </a>`;
-    },
+    }
 };
 
 function dateToHtmlElement(date) {
@@ -209,17 +250,15 @@ function dateToHtmlElement(date) {
 
 function postToHtmlElement(post) {
 
-    const element = tag.fromString(
-        post.source === '8chan_cbts' ?
-            `<article id="post${post.id}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
+    const element = tag.fromString(post.source === '8chan_cbts'
+        ? `<article id="post${post.id}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
           <button onclick="selectAnswers(${post.id})" class="answers ${answerButtonClass(post.id)}">answers</button>
           <span class="counter">${postOrder.indexOf(post.id) + 1}</span>
           ${forAll(post.references, x => `
           <blockquote id="post${post.id}">${html.post2(x)}</blockquote>`)}
           ${html.post2(post)}
         </article>`
-            :
-            `<article id="post${post.postId}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
+        : `<article id="post${post.postId}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
         <button onclick="selectAnswers(${post.postId})" class="answers ${answerButtonClass(post.postId)}">answers</button>
         <span class="counter">${postOrder.indexOf(post.postId) + 1}</span>
         ${ifExists(post.reference, x => `
@@ -230,35 +269,29 @@ function postToHtmlElement(post) {
     return element;
 }
 
-const answerButtonClass = (postId) =>
-    editedAnswers[postId]
-        ? 'edited'
-        : answers[postId] && answers[postId].length
+const answerButtonClass = (postId) => editedAnswers[postId]
+    ? 'edited'
+    : answers[postId] && answers[postId].length
         ? ''
         : 'empty';
 
-// 1,10925,12916,13092,13215,59684,93287,93312,14795558,14797863,147023341,148029633,148029962,148031295,148032210,148032910,148033178,148033932,148136656,1476689362
+// 1,10925,12916,13092,13215,59684,93287,93312,14795558,14797863,147023341,14802
+// 9633,148029962,148031295,148032210,148032910,148033178,148033932,148136656,14
+// 7 6689362
 
-const localImgSrc = src => 'data/images/' + src.split('/').slice(-1)[0];
-
+const localImgSrc = src => 'data/images/' + src
+    .split('/')
+    .slice(-1)[0];
 
 const legendPattern = new RegExp(`([^a-zA-Z])(${Object.keys(legend).join('|')})([^a-zA-Z])`, 'g');
 
 const addHighlights = text => !text
     ? ''
-    : text
-        .replace(/(^>[^>].*\n?)+/g,
-            (match) => `<q>${match}</q>`)
-        .replace(/(https?:\/\/[.\w\/?\-=&]+)/g,
-            (match) => match.endsWith('.jpg') ? `<img src="${match}" alt="image">` : `<a href="${match}" target="_blank">${match}</a>`)
-        .replace(/(\[[^[]+])/g,
-            (match) => `<strong>${match}</strong>`)
-        .replace(legendPattern,
-            (match, p1, p2, p3, o, s) => `${p1}<abbr title="${legend[p2]}">${p2}</abbr>${p3}`);
+    : text.replace(/(^>[^>].*\n?)+/g, (match) => `<q>${match}</q>`).replace(/(https?:\/\/[.\w\/?\-=&]+)/g, (match) => match.endsWith('.jpg')
+        ? `<img src="${match}" alt="image">`
+        : `<a href="${match}" target="_blank">${match}</a>`).replace(/(\[[^[]+])/g, (match) => `<strong>${match}</strong>`).replace(legendPattern, (match, p1, p2, p3, o, s) => `${p1}<abbr title="${legend[p2]}">${p2}</abbr>${p3}`);
 
-////////////////////
-// parse 8chan posts
-////////////////////
+// PARSE 8chan
 
 let emptyThreads;
 
@@ -268,33 +301,256 @@ function checkForNewPosts() {
 
     const alreadyParsedIds = [
         // empty threads on cbts
-        132230, 107604, 4485, 62050, 131416, 2, 61078, 61918, 133015, 131736, 15577, 2422, 130309, 2078, 132899, 120430, 117841, 117776, 132229, 26613, 110901, 2300, 131837, 1411, 106, 111180, 131800, 1327, 127080, 131488, 130524, 55606, 80370, 125940, 59035, 108027, 3952, 130219, 40157, 129902, 50043, 129379, 126728, 127436, 123576, 127679, 115185, 106323, 125574, 4249, 114171, 125725, 65635, 44375, 124958, 1346, 125046, 1362, 124167, 108000, 116764, 123887, 123275, 74186, 122424, 4992, 120048, 1391, 94829, 4136, 12832, 119253, 118462, 117654, 91987, 3163, 116784, 1342, 100323, 115972, 2219, 23518, 115178, 66888, 94250, 1398, 114324, 44295, 108272, 113439, 108873, 112573, 36791, 111656, 110385, 110721, 109881, 41855, 1367, 109005, 15139, 102142, 108024, 104552, 17818, 107138, 61534, 33405, 106285, 5984, 59512, 290, 101124, 105464, 29994, 104641, 103753, 74559, 7705, 102804, 101840, 56328, 65503, 101287, 100321, 28157, 99590, 98535, 97899, 97068, 23344, 80960, 96273, 56075, 77040, 95429, 94465, 93785, 4409, 10, 91369, 8629, 90491, 89588, 88704, 87855, 86934, 86074, 3418, 84471, 62673, 83064, 82175, 45109, 15984, 2198, 59853, 423, 37441, 52820, 80329, 79481, 78661, 77824, 77001, 16027, 49883, 170, 76158, 75329, 6535, 69526, 69603, 33706, 10556, 62689, 20714, 71941, 71064, 64707, 8515, 70260, 42055, 62353, 68564, 28513, 67649, 41581, 848, 66796, 3102, 65909, 49767, 65108, 64254, 33454, 1401, 62562, 61105, 61621, 60804, 1, 58319, 50429, 1816, 56876,
+        1,
+        10,
+        100321,
+        100323,
+        101124,
+        101287,
+        101840,
+        102142,
+        102804,
+        103753,
+        104552,
+        104641,
+        105464,
+        10556,
+        106,
+        106285,
+        106323,
+        107138,
+        107604,
+        108000,
+        108024,
+        108027,
+        108272,
+        108873,
+        109005,
+        109881,
+        110385,
+        110721,
+        110901,
+        111180,
+        111656,
+        112573,
+        113439,
+        114171,
+        114324,
+        115178,
+        115185,
+        115972,
+        116764,
+        116784,
+        117654,
+        117776,
+        117841,
+        118462,
+        119253,
+        120048,
+        120430,
+        122424,
+        123275,
+        123576,
+        123887,
+        124167,
+        124958,
+        125046,
+        125574,
+        125725,
+        125940,
+        126728,
+        127080,
+        127436,
+        127679,
+        12832,
+        129379,
+        129902,
+        130219,
+        130309,
+        130524,
+        131416,
+        131488,
+        131736,
+        131800,
+        131837,
+        132229,
+        132230,
+        1327,
+        132899,
+        133015,
+        1342,
+        1346,
+        1362,
+        1367,
+        1391,
+        1398,
+        1401,
+        1411,
+        15139,
+        15577,
+        15984,
+        16027,
+        170,
+        17818,
+        1816,
+        2,
+        20714,
+        2078,
+        2198,
+        2219,
+        2300,
+        23344,
+        23518,
+        2422,
+        26613,
+        28157,
+        28513,
+        290,
+        29994,
+        3102,
+        3163,
+        33405,
+        33454,
+        33706,
+        3418,
+        36791,
+        37441,
+        3952,
+        40157,
+        4136,
+        41581,
+        41855,
+        42055,
+        423,
+        4249,
+        4409,
+        44295,
+        44375,
+        4485,
+        45109,
+        49767,
+        49883,
+        4992,
+        50043,
+        50429,
+        52820,
+        55606,
+        56075,
+        56328,
+        56876,
+        58319,
+        59035,
+        59512,
+        5984,
+        59853,
+        60804,
+        61078,
+        61105,
+        61534,
+        61621,
+        61918,
+        62050,
+        62353,
+        62562,
+        62673,
+        62689,
+        64254,
+        64707,
+        65108,
+        6535,
+        65503,
+        65635,
+        65909,
+        66796,
+        66888,
+        67649,
+        68564,
+        69526,
+        69603,
+        70260,
+        71064,
+        71941,
+        74186,
+        74559,
+        75329,
+        76158,
+        77001,
+        77040,
+        7705,
+        77824,
+        78661,
+        79481,
+        80329,
+        80370,
+        80960,
+        82175,
+        83064,
+        84471,
+        848,
+        8515,
+        86074,
+        8629,
+        86934,
+        87855,
+        88704,
+        89588,
+        90491,
+        91369,
+        91987,
+        93785,
+        94250,
+        94465,
+        94829,
+        95429,
+        96273,
+        97068,
+        97899,
+        98535,
+        99590,
 
         // threads already in cbtsTrip8chanPosts.js
-        13366, 16943, 33992, 59130, 59969, 63405, 69407, 72735, 73615, 74470, 81218, 82147, 85308, 92197, 93014, 120902, 121693, 126564, 128199, 128973, 129812,
+        120902,
+        121693,
+        126564,
+        128199,
+        128973,
+        129812,
+        13366,
+        16943,
+        33992,
+        59130,
+        59969,
+        63405,
+        69407,
+        72735,
+        73615,
+        74470,
+        81218,
+        82147,
+        85308,
+        92197,
+        93014
     ];
 
     const catalogUrl = 'https://8ch.net/cbts/catalog.json';
 
     getJson(catalogUrl).then(threads => {
 
-        const newThreadIds = threads
-            .reduce((p, e) => p.concat(e.threads), [])
-            .filter((p) => p.sub.includes('CBTS'))
-            .map((p) => p.no)
-            .filter((id) => !alreadyParsedIds.includes(id));
+        const newThreadIds = threads.reduce((p, e) => p.concat(e.threads), []).filter((p) => p.sub.includes('CBTS')).map((p) => p.no).filter((id) => !alreadyParsedIds.includes(id));
 
-        Promise.all(newThreadIds.map(getPostsByThread)).then(result => {
-            const newPosts = result.reduce((p, e) => p.concat(e), []);
+        Promise
+            .all(newThreadIds.map(getPostsByThread))
+            .then(result => {
+                const newPosts = result.reduce((p, e) => p.concat(e), []);
 
-            console.log(`empty threads\n${emptyThreads}`);
+                console.log(`empty threads\n${emptyThreads}`);
 
-            newPosts.sort((a, b) => b['timestamp'] - a['timestamp']);
-            posts.unshift(...newPosts);
-            postOrder.push(...(newPosts.map(p => p.id).reverse()));
-            render(posts);
-            statusElement.textContent = '';
-        });
+                newPosts.sort((a, b) => b['timestamp'] - a['timestamp']);
+                posts.unshift(...newPosts);
+                postOrder.push(...(newPosts.map(p => p.id).reverse()));
+                render(posts);
+                statusElement.textContent = '';
+            });
     });
 }
 
@@ -307,11 +563,11 @@ function getPostsByThread(id) {
             emptyThreads.push(id);
             return [];
         }
-        const threadPosts = result.posts
+        const threadPosts = result
+            .posts
             .map(p => parse8chanPost(p, id));
 
-        const newPosts = threadPosts
-            .filter((p) => p.trip === '!UW.yye1fxo');
+        const newPosts = threadPosts.filter((p) => p.trip === '!UW.yye1fxo');
 
         for (const newPost of newPosts) {
             referencePattern.lastIndex = 0;
@@ -328,12 +584,8 @@ function getPostsByThread(id) {
 
 // NEWS
 
-
 function parse8chanPost(post, threadId) {
-    const getImgUrl = (chanPost) => ({
-      url: `https://media.8ch.net/file_store/${chanPost.tim}${chanPost.ext}`,
-      filename: chanPost.filename,
-    });
+    const getImgUrl = (chanPost) => ({url: `https://media.8ch.net/file_store/${chanPost.tim}${chanPost.ext}`, filename: chanPost.filename});
 
     const keyMap = {
         'no': 'id',
@@ -350,21 +602,24 @@ function parse8chanPost(post, threadId) {
         // 'filename': 'fileName',
     };
 
-    const newPost = {'images': []};
+    const newPost = {
+        'images': []
+    };
     for (const key of Object.keys(keyMap)) {
-        if (post[key] == null) continue;
-
-        if (key == 'tim')
+        if (post[key] == null) 
+            continue;
+        
+        if (key == 'tim') 
             newPost['images'].push(getImgUrl(post));
-        else if (key == 'extra_files')
+        else if (key == 'extra_files') 
             newPost['images'].push(...post[key].map(getImgUrl));
-        else if (key == 'no')
+        else if (key == 'no') 
             newPost[keyMap[key]] = post[key].toString();
-        else if (key == 'com')
+        else if (key == 'com') 
             newPost[keyMap[key]] = cleanHtmlText(post[key]);
-        else
+        else 
             newPost[keyMap[key]] = post[key];
-    }
+        }
     newPost.source = '8chan_cbts';
     newPost.link = `https://8ch.net/cbts/res/${threadId}.html#${newPost.id}`;
     newPost.threadId = '' + threadId;
@@ -384,18 +639,16 @@ function cleanHtmlText(htmlText) {
         .replace(referencePattern, (m, p1) => `>>${p1}`)
         .replace(linkPattern, (m, p1) => `${p1}`)
         .replace(quotePattern, (m, p1) => `>${p1}\n`)
-        .replace(paragraphPattern, (m, p1) => `${p1}\n`)
-        ;
+        .replace(paragraphPattern, (m, p1) => `${p1}\n`);
 }
 
-////////////////////
-// html functions
-////////////////////
+//////////////////// html functions //////////////////
 
 const ifElement = (selector, callback) => {
     const element = document.querySelector(selector);
-    if (element) return callback(element);
-};
+    if (element) 
+        return callback(element);
+    };
 
 function copyAnswers() {
     ifElement('article.selected', selectedArticle => {
@@ -424,7 +677,11 @@ function resetAnswer() {
         if (editor.isPreviewActive()) {
             setPreview(editor);
         }
-        selectedArticle.querySelector('article button').className = `answers ${value ? '' : 'empty'}`;
+        selectedArticle
+            .querySelector('article button')
+            .className = `answers ${value
+            ? ''
+            : 'empty'}`;
     });
 }
 
@@ -435,26 +692,44 @@ function selectAnswers(selectedPostId) {
         const postId = selectedArticle.item.postId;
         if (answerIsEdited(postId)) {
             editedAnswers[postId] = editor.value();
-            selectedArticle.querySelector('article button').className = `answers edited`
+            selectedArticle
+                .querySelector('article button')
+                .className = `answers edited`
         }
-        selectedArticle.classList.remove('selected');
+        selectedArticle
+            .classList
+            .remove('selected');
     });
     if (!selectedPostId) {
-        document.querySelector('aside h1').innerHTML = `Answers`;
+        document
+            .querySelector('aside h1')
+            .innerHTML = `Answers`;
         editor.value('');
         if (editor.isPreviewActive()) {
             setPreview(editor);
         }
-        document.querySelector('#editor-wrapper').style.display = 'none';
+        document
+            .querySelector('#editor-wrapper')
+            .style
+            .display = 'none';
     } else {
-        document.querySelector('#editor-wrapper').style.display = 'block';
+        document
+            .querySelector('#editor-wrapper')
+            .style
+            .display = 'block';
 
         const article = document.querySelector(`#post${selectedPostId}`);
-        article.classList.add('selected');
+        article
+            .classList
+            .add('selected');
 
-        document.querySelector('aside h1').innerHTML = `Answers for <a href="#post${selectedPostId}">${selectedPostId}</a>`;
+        document
+            .querySelector('aside h1')
+            .innerHTML = `Answers for <a href="#post${selectedPostId}">${selectedPostId}</a>`;
 
-        const answer = editedAnswers[selectedPostId] !== undefined ? editedAnswers[selectedPostId] : answers[selectedPostId] || '';
+        const answer = editedAnswers[selectedPostId] !== undefined
+            ? editedAnswers[selectedPostId]
+            : answers[selectedPostId] || '';
         editor.value(answer);
         // refresh hack
         if (editor.isPreviewActive()) {
@@ -471,7 +746,6 @@ function storeLocalAnswers() {
     localStorage.setItem('answers', JSON.stringify(editedAnswers));
 }
 
-
 function loadLocalAnswers() {
     const newAnswers = localStorage.getItem('answers');
     if (newAnswers) {
@@ -480,19 +754,31 @@ function loadLocalAnswers() {
 }
 
 function setPreview(editor) {
-    const wrapper = editor.codemirror.getWrapperElement();
-    const toolbar = editor.options.toolbar ? editor.toolbarElements.preview : null;
+    const wrapper = editor
+        .codemirror
+        .getWrapperElement();
+    const toolbar = editor.options.toolbar
+        ? editor.toolbarElements.preview
+        : null;
     const preview = wrapper.lastChild;
 
-    preview.classList.add("editor-preview-active");
+    preview
+        .classList
+        .add("editor-preview-active");
 
     if (toolbar) {
-        toolbar.classList.add("active");
+        toolbar
+            .classList
+            .add("active");
 
         const toolbarDiv = wrapper.previousSibling;
-        toolbarDiv.classList.add("disabled-for-preview");
+        toolbarDiv
+            .classList
+            .add("disabled-for-preview");
     }
-    preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+    preview.innerHTML = editor
+        .options
+        .previewRender(editor.value(), preview);
 }
 
 function getAllAnswersUpdate() {

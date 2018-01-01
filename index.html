@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Q</title>
@@ -15,61 +16,70 @@
   <script src="data/polTrip4chanPosts.js"></script>
   <script src="data/polTrip8chanPosts.js"></script>
   <script src="data/cbtsTrip8chanPosts.js"></script>
+  <script src="data/cbtsNonTrip8chanPosts.js"></script>
   <script src="data/legend.js"></script>
   <script src="data/news.js"></script>
   <script src="core.js"></script>
   <script src="index.js"></script>
 </head>
+
 <body>
-<header class="row">
-  <div>
-    <input type="search" placeholder="type to filter..." list="hints">
+  <header class="row">
+    <div>
+      <input type="search" placeholder="type to filter..." list="hints">
 
-    <datalist id="hints"></datalist>
-    <span id="count"></span>
-  </div>
-  <div>
-    <div id="status"></div>
-  </div>
-  <div class="stretch row">
-    <button onclick="toggleDialog()">🎅</button>
-  </div>
-  <div class="row hide-mobile">
-    <a href="news.html">Q related news</a>
-    <textarea id="Copy" placeholder="click select-all copy"></textarea>
-    <button onclick="copyAnswers()" class="answers">Copy edited answers</button>
-    <button onclick="toggleAnswers()">Toggle Answers</button>
-  </div>
-</header>
-<main>
-  <section></section>
-  <aside>
-    <div class="row">
-      <h1 class="stretch">Answers</h1>
-      <div>
-        <button onclick="resetAnswer()">Reset</button>
+      <datalist id="hints"></datalist>
+      <span id="count"></span>
+    </div>
+    <div>
+      <div id="status"></div>
+    </div>
+    <div class="stretch row">
+      <button onclick="toggleDialog()">🎅</button>
+    </div>
+    <div class="row hide-mobile">
+      <a href="news.html">Q related news</a>
+      <textarea id="Copy" placeholder="click select-all copy"></textarea>
+      <button onclick="copyAnswers()" class="answers">Copy edited answers</button>
+      <button onclick="toggleAnswers()">Toggle Answers</button>
+    </div>
+  </header>
+  <main>
+    <section></section>
+    <aside>
+      <div class="row">
+        <h1 class="stretch">Answers</h1>
+        <div>
+          <button onclick="resetAnswer()">Reset</button>
+        </div>
       </div>
-    </div>
-    <div id="editor-wrapper">
-      <textarea id="answers"></textarea>
-    </div>
-  </aside>
-</main>
-<div class="dialog">
-  <div>
-    <p>If you'd like to buy me a beer or a little Christmas present for my effort, you can donate some Bitcoins to the following address:</p>
-    <p><code>1JExPvzpR6WWLQMsPZSYhuq1Cox9kz33XS</code></p>
-    <p><img src="qrBTC.png" width="370" height="370" alt="QR code"></p>
+      <div id="editor-wrapper">
+        <textarea id="answers"></textarea>
+      </div>
+    </aside>
+  </main>
+  <div class="dialog">
+    <div>
+      <p>If you'd like to buy me a beer or a little Christmas present for my effort, you can donate some Bitcoins to the following
+        address:
+      </p>
+      <p>
+        <code>1JExPvzpR6WWLQMsPZSYhuq1Cox9kz33XS</code>
+      </p>
+      <p>
+        <img src="qrBTC.png" width="370" height="370" alt="QR code">
+      </p>
 
-    <pre>
+      <pre>
 🌟🇺🇸🇺🇸🇺🇸🌟🇺🇸🇺🇸🌟🌟🇺🇸🌟🇺🇸🌟🇺🇸🇺🇸🌟🇺🇸🇺🇸🌟🇺🇸🇺🇸🌟🌟
 🌟🌟🇺🇸🌟🌟🇺🇸🌟🇺🇸🌟🇺🇸🌟🇺🇸🌟🇺🇸🌟🇺🇸🌟🇺🇸🌟🇺🇸🌟🇺🇸🌟
 🌟🌟🇺🇸🌟🌟🇺🇸🇺🇸🌟🌟🇺🇸🌟🇺🇸🌟🇺🇸🌟🇺🇸🌟🇺🇸🌟🇺🇸🇺🇸🌟🌟
 🌟🌟🇺🇸🌟🌟🇺🇸🌟🇺🇸🌟🇺🇸🌟🇺🇸🌟🇺🇸🌟🌟🌟🇺🇸🌟🇺🇸🌟🌟🌟
 🌟🌟🇺🇸🌟🌟🇺🇸🌟🇺🇸🌟🇺🇸🇺🇸🇺🇸🌟🇺🇸🌟🌟🌟🇺🇸🌟🇺🇸🌟🌟🌟
   </pre>
+    </div>
   </div>
-</div>
-<div class="overlay" onclick="toggleDialog()"></div>
+  <div class="overlay" onclick="toggleDialog()"></div>
 </body>
+
 </html>
