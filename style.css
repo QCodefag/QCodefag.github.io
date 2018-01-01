@@ -154,6 +154,10 @@ q {
   border-left: 2px solid #a8e5ff;
 }
 
+.source_8chan_cbts_nonq {
+  border-left: 2px solid darkred;
+}
+
 .deleted {
   background-color: #ecc6c6;
 }

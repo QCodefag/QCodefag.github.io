@@ -33,7 +33,8 @@ function main() {
         .concat(polTrip4chanPosts)
         .concat(polTrip8chanPosts)
         .concat(cbtsNonTrip8chanPosts)
-        .concat(cbtsTrip8chanPosts);
+        .concat(cbtsTrip8chanPosts)
+        .concat(cbts8chanNonQPosts);
 
     posts.sort((a, b) => b.timestamp - a.timestamp);
     postOrder.push(...(posts.map(p => p.id || p.postId).reverse()));
@@ -178,7 +179,7 @@ const html = {
             <a href="${post.link}" target="_blank">${post.postId}</a>
 
             ${ifExists(post.edited, x => `
-            <span class="edited" title="${edate.toISOString()}">Edited at ${formatDate(edate)}, ${formatTime(edate)}</span>`)}
+            <span class="edited" title="${edate.toISOString()}">Last edited at ${formatDate(edate)}, ${formatTime(edate)}</span>`)}
         </header>
 
         ${ifExists(post.fileName, x => `
@@ -219,7 +220,7 @@ const html = {
             <a href="${post.link}" target="_blank">${post.id}</a>
 
             ${ifExists(post.edited, x => `
-            <span class="edited" title="${edate.toISOString()}">Edited at ${formatDate(edate)}, ${formatTime(edate)}</span>`)}
+            <span class="edited" title="${edate.toISOString()}">Last edited at ${formatDate(edate)}, ${formatTime(edate)}</span>`)}
         </header>
 
         ${forAll(post.images, html.img2)}
@@ -249,8 +250,7 @@ function dateToHtmlElement(date) {
 }
 
 function postToHtmlElement(post) {
-
-    const element = tag.fromString(post.source === '8chan_cbts'
+    const element = tag.fromString((post.source === '8chan_cbts_nonq')
         ? `<article id="post${post.id}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
           <button onclick="selectAnswers(${post.id})" class="answers ${answerButtonClass(post.id)}">answers</button>
           <span class="counter">${postOrder.indexOf(post.id) + 1}</span>
@@ -258,13 +258,21 @@ function postToHtmlElement(post) {
           <blockquote id="post${post.id}">${html.post2(x)}</blockquote>`)}
           ${html.post2(post)}
         </article>`
-        : `<article id="post${post.postId}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
+        : (post.source === '8chan_cbts'
+            ? `<article id="post${post.id}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
+          <button onclick="selectAnswers(${post.id})" class="answers ${answerButtonClass(post.id)}">answers</button>
+          <span class="counter">${postOrder.indexOf(post.id) + 1}</span>
+          ${forAll(post.references, x => `
+          <blockquote id="post${post.id}">${html.post2(x)}</blockquote>`)}
+          ${html.post2(post)}
+        </article>`
+            : `<article id="post${post.postId}" class="source_${post.source} ${ifExists(post.timestampDeletion, () => 'deleted')}">
         <button onclick="selectAnswers(${post.postId})" class="answers ${answerButtonClass(post.postId)}">answers</button>
         <span class="counter">${postOrder.indexOf(post.postId) + 1}</span>
         ${ifExists(post.reference, x => `
         <blockquote id="post${post.postId}">${html.post(x)}</blockquote>`)}
         ${html.post(post)}
-      </article>`);
+      </article>`));
     element.item = post;
     return element;
 }
