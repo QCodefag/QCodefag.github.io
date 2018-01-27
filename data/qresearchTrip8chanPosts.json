@@ -1519,5 +1519,35 @@
     "threadId": "178510",
     "source": "8chan_qresearch",
     "link": "https://8ch.net//qresearch/res/178510.html#178973"
+  },
+  {
+    "id": "179595",
+    "userId": "d15fcf",
+    "timestamp": 1517075036,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>179419\nCFR?\nWhat a coincidence.\nQ\n",
+    "images": [],
+    "threadId": "179291",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/179291.html#179595",
+    "references": [
+      {
+        "id": "179419",
+        "userId": "e1be55",
+        "timestamp": 1517074142,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": "JA posted this vid earlier today. It's JB at a CFR event. https:// twitter. com/JulianAssange/status/957212097984819200\n",
+        "images": [],
+        "threadId": "179291",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/179291.html#179419"
+      }
+    ]
   }
 ]
