@@ -1701,5 +1701,56 @@
         ]
       }
     ]
+  },
+  {
+    "id": "181153",
+    "userId": "6ac3b9",
+    "timestamp": 1517081384,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>181050\n",
+    "images": [],
+    "threadId": "180880",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/180880.html#181153",
+    "references": [
+      {
+        "id": "181050",
+        "userId": "7465a2",
+        "timestamp": 1517080914,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>181023\n",
+        "images": [
+          {
+            "url": "https://media.8ch.net/file_store/db78cd71b62c7bca9f1a6827eb1ea09777c51ac7ee75e8ca3c342b9632aeaa4e.png",
+            "filename": "screenshot_285.png"
+          }
+        ],
+        "threadId": "180880",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/180880.html#181050",
+        "references": [
+          {
+            "id": "181023",
+            "userId": "49b617",
+            "timestamp": 1517080796,
+            "subject": null,
+            "name": "Anonymous",
+            "email": null,
+            "trip": null,
+            "text": "From the last thread - anon posted that SIGNAL is owned by The Freedom of the Press Foundation\nTHIS IS THE CHAT APP THE FISA CONSPIRATORS USED FOR COMMS\n\nalso kept getting 404 or \"thread pruned or deleted\" messages when trying to post -but here now. Updated spreadsheet &amp; many good answers - ty you all\n",
+            "images": [],
+            "threadId": "180880",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/180880.html#181023"
+          }
+        ]
+      }
+    ]
   }
 ]
