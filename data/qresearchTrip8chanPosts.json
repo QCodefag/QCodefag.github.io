@@ -2249,5 +2249,60 @@
         "link": "https://8ch.net//qresearch/res/231311.html#231746"
       }
     ]
+  },
+  {
+    "id": "233024",
+    "userId": "4dbd1b",
+    "timestamp": 1517468515,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>232480\nKlaus Eberwein\nQ\n",
+    "images": [],
+    "threadId": "232078",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/232078.html#233024",
+    "references": [
+      {
+        "id": "232480",
+        "userId": "21f0bb",
+        "timestamp": 1517465218,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>232419\nKarma is a bitch.\n",
+        "images": [
+          {
+            "url": "https://media.8ch.net/file_store/33c7e6489467997d5fba69c14f2b80e44ea01dac3e8f8cc60778bd0661b6d399.jpg",
+            "filename": "Screenshot_20180201-000440.jpg"
+          },
+          {
+            "url": "https://media.8ch.net/file_store/930cc050b8d2d6727a0b2cc91c9a797aa770d1ef8dd1a2194d364888d5e5f7d5.jpg",
+            "filename": "Screenshot_20180201-000542.jpg"
+          }
+        ],
+        "threadId": "232078",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/232078.html#232480",
+        "references": [
+          {
+            "id": "232419",
+            "userId": "2a36e9",
+            "timestamp": 1517465000,
+            "subject": null,
+            "name": "Anonymous",
+            "email": null,
+            "trip": null,
+            "text": "Habbening?\n\nhttps://  twitter.com/DailyCaller/status/958942682482663424\n",
+            "images": [],
+            "threadId": "232078",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/232078.html#232419"
+          }
+        ]
+      }
+    ]
   }
 ]
