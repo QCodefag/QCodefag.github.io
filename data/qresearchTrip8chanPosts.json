@@ -1962,5 +1962,35 @@
         ]
       }
     ]
+  },
+  {
+    "id": "229398",
+    "userId": "187fba",
+    "timestamp": 1517454578,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>229273\nRe_read EO’s.\nPut together.\nQ\n",
+    "images": [],
+    "threadId": "229045",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/229045.html#229398",
+    "references": [
+      {
+        "id": "229273",
+        "userId": "5b7bb1",
+        "timestamp": 1517454162,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": "Potus on \"terrorists\" and Guantanamo bay.\n\n\"let's be clear….   enemy combatants.\"\n",
+        "images": [],
+        "threadId": "229045",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/229045.html#229273"
+      }
+    ]
   }
 ]
