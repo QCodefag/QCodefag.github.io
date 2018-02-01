@@ -1856,5 +1856,49 @@
         "link": "https://8ch.net//qresearch/res/228258.html#228958"
       }
     ]
+  },
+  {
+    "id": "229103",
+    "userId": "187fba",
+    "timestamp": 1517453596,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>229035\n!\nQ\n",
+    "images": [],
+    "threadId": "229045",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/229045.html#229103"
+  },
+  {
+    "id": "229128",
+    "userId": "187fba",
+    "timestamp": 1517453656,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>229109\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\nQ\n",
+    "images": [],
+    "threadId": "229045",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/229045.html#229128",
+    "references": [
+      {
+        "id": "229109",
+        "userId": "2d9a0e",
+        "timestamp": 1517453613,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>229003\n“I call on the Congress to empower every Cabinet secretary with the authority to reward good workers and to remove federal employees who undermine the public trust or fail the American people.”\n\nThis?\n",
+        "images": [],
+        "threadId": "229045",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/229045.html#229109"
+      }
+    ]
   }
 ]
