@@ -1819,7 +1819,7 @@
         "name": "Anonymous",
         "email": null,
         "trip": null,
-        "text": ">&gt;228286\n>&gt;228286\nI have posted this so many times.\n\nTomorrow is Freedom Day. Q posted a flag named Freedom and timing is everything.\n\nTomorrow.\n",
+        "text": ">>228286\n>>228286\nI have posted this so many times.\n\nTomorrow is Freedom Day. Q posted a flag named Freedom and timing is everything.\n\nTomorrow.\n",
         "images": [],
         "threadId": "228258",
         "source": "8chan_qresearch",
@@ -1869,7 +1869,55 @@
     "images": [],
     "threadId": "229045",
     "source": "8chan_qresearch",
-    "link": "https://8ch.net//qresearch/res/229045.html#229103"
+    "link": "https://8ch.net//qresearch/res/229045.html#229103",
+    "references": [
+      {
+        "id": "229035",
+        "userId": "82ba48",
+        "timestamp": 1517453292,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>229003\nI heard a reference to federal employees who commit crimes…  \n\nWas listening for so MANY coded messages.  GREAT speech.  Loved the part about the Capitol dome.\n",
+        "images": [],
+        "threadId": "228258",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/228258.html#229035",
+        "references": [
+          {
+            "id": "229003",
+            "userId": "7280b6",
+            "timestamp": 1517453168,
+            "subject": null,
+            "name": "Q",
+            "email": null,
+            "trip": "!UW.yye1fxo",
+            "text": ">>228958\nTiming is everything.\nDid you miss the most important line of the entire speech?\nActivation code.\nQ\n",
+            "images": [],
+            "threadId": "228258",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/228258.html#229003",
+            "references": [
+              {
+                "id": "228958",
+                "userId": "e3e8f0",
+                "timestamp": 1517452983,
+                "subject": null,
+                "name": "Anonymous",
+                "email": null,
+                "trip": null,
+                "text": "Potus speech was inspiring!\n",
+                "images": [],
+                "threadId": "228258",
+                "source": "8chan_qresearch",
+                "link": "https://8ch.net//qresearch/res/228258.html#228958"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "229128",
@@ -2070,7 +2118,39 @@
     "images": [],
     "threadId": "229811",
     "source": "8chan_qresearch",
-    "link": "https://8ch.net//qresearch/res/229811.html#229941"
+    "link": "https://8ch.net//qresearch/res/229811.html#229941",
+    "references": [
+      {
+        "id": "229794",
+        "userId": "5481e9",
+        "timestamp": 1517455852,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>229644\nWatzman was the General Manager of the Standard hotel in West Hollywood. She had worked for the company for nearly 11 years.\n\nhttp:// www.latimes.com/socal/daily-\n  pilot/news/tn-dpt-me-crash-update-20180131-story.html\n",
+        "images": [],
+        "threadId": "229045",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/229045.html#229794",
+        "references": [
+          {
+            "id": "229644",
+            "userId": "187fba",
+            "timestamp": 1517455372,
+            "subject": null,
+            "name": "Q",
+            "email": null,
+            "trip": "!UW.yye1fxo",
+            "text": "Helicopter.\nCRASH.\nNewport Beach.\nHotel GM.\nWhat happened @ those hotels?\nQ\n",
+            "images": [],
+            "threadId": "229045",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/229045.html#229644"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "230091",
@@ -2204,7 +2284,28 @@
     "images": [],
     "threadId": "231311",
     "source": "8chan_qresearch",
-    "link": "https://8ch.net//qresearch/res/231311.html#231625"
+    "link": "https://8ch.net//qresearch/res/231311.html#231625",
+    "references": [
+      {
+        "id": "231205",
+        "userId": "42eae9",
+        "timestamp": 1517460580,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": "\n",
+        "images": [
+          {
+            "url": "https://media.8ch.net/file_store/1e8fb02eda17cfc90eedaa84c6d760ed6f8543db6ae45ea7a8ccc37ed21d3d11.png",
+            "filename": "Screenshot 2018-01-31 at 9….png"
+          }
+        ],
+        "threadId": "230599",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/230599.html#231205"
+      }
+    ]
   },
   {
     "id": "231651",
