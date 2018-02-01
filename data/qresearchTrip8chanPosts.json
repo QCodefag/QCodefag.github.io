@@ -1826,5 +1826,35 @@
         "link": "https://8ch.net//qresearch/res/228258.html#228302"
       }
     ]
+  },
+  {
+    "id": "229003",
+    "userId": "7280b6",
+    "timestamp": 1517453168,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>228958\nTiming is everything.\nDid you miss the most important line of the entire speech?\nActivation code.\nQ\n",
+    "images": [],
+    "threadId": "228258",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/228258.html#229003",
+    "references": [
+      {
+        "id": "228958",
+        "userId": "e3e8f0",
+        "timestamp": 1517452983,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": "Potus speech was inspiring!\n",
+        "images": [],
+        "threadId": "228258",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/228258.html#228958"
+      }
+    ]
   }
 ]
