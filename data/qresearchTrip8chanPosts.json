@@ -2071,5 +2071,51 @@
     "threadId": "229811",
     "source": "8chan_qresearch",
     "link": "https://8ch.net//qresearch/res/229811.html#229941"
+  },
+  {
+    "id": "230091",
+    "userId": "6f3736",
+    "timestamp": 1517456811,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>230019\nHow ‘they’ control those they need.\nOne recent example.\nRelevant today.\nLearn.\nQ\n",
+    "images": [],
+    "threadId": "229811",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/229811.html#230091",
+    "references": [
+      {
+        "id": "230019",
+        "userId": "cad939",
+        "timestamp": 1517456610,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>229941\nsome incident with Adam SHIT happened at a hotel and was covered up. He is repaying the favor by trying to cover this up. Anons, we are looking for a death cover-up of AS doing\n",
+        "images": [],
+        "threadId": "229811",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/229811.html#230019",
+        "references": [
+          {
+            "id": "229941",
+            "userId": "6f3736",
+            "timestamp": 1517456384,
+            "subject": null,
+            "name": "Q",
+            "email": null,
+            "trip": "!UW.yye1fxo",
+            "text": ">>229794\nWhat happened @ hotel?\n[AS]\nWhat is [AS] attempting right now?\nFavor repaid.\nQ\n",
+            "images": [],
+            "threadId": "229811",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/229811.html#229941"
+          }
+        ]
+      }
+    ]
   }
 ]
