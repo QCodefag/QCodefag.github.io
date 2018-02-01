@@ -1796,5 +1796,35 @@
         "link": "https://8ch.net//qresearch/res/180880.html#181208"
       }
     ]
+  },
+  {
+    "id": "228878",
+    "userId": "7280b6",
+    "timestamp": 1517452699,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>228302\n[D]ay [Of] [D]ays\nQ\n",
+    "images": [],
+    "threadId": "228258",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/228258.html#228878",
+    "references": [
+      {
+        "id": "228302",
+        "userId": "2d32eb",
+        "timestamp": 1517449184,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">&gt;228286\n>&gt;228286\nI have posted this so many times.\n\nTomorrow is Freedom Day. Q posted a flag named Freedom and timing is everything.\n\nTomorrow.\n",
+        "images": [],
+        "threadId": "228258",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/228258.html#228302"
+      }
+    ]
   }
 ]
