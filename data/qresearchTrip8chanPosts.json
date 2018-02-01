@@ -2006,5 +2006,56 @@
     "threadId": "229045",
     "source": "8chan_qresearch",
     "link": "https://8ch.net//qresearch/res/229045.html#229644"
+  },
+  {
+    "id": "229717",
+    "userId": "187fba",
+    "timestamp": 1517455621,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>229662\nNews unlocks MAP.\nQ\n",
+    "images": [],
+    "threadId": "229045",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/229045.html#229717",
+    "references": [
+      {
+        "id": "229662",
+        "userId": "aa4ee2",
+        "timestamp": 1517455441,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>229599\nIm Guessing that the Freedom Statue &amp; Freedom Day have to do with the Q stringers for FREEDOM….\n",
+        "images": [],
+        "threadId": "229045",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/229045.html#229662",
+        "references": [
+          {
+            "id": "229599",
+            "userId": "a2e8d8",
+            "timestamp": 1517455228,
+            "subject": null,
+            "name": "Anonymous",
+            "email": null,
+            "trip": null,
+            "text": "Happy Freedom Day Tomorrow 2/1/18\n",
+            "images": [
+              {
+                "url": "https://media.8ch.net/file_store/08d42a29c683b0fc56595820a3601700a6c9af057e31810098765cccd305d6b9.jpg",
+                "filename": "0000freedom.jpg"
+              }
+            ],
+            "threadId": "229045",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/229045.html#229599"
+          }
+        ]
+      }
+    ]
   }
 ]
