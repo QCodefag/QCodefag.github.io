@@ -2579,5 +2579,70 @@
     "threadId": "279266",
     "source": "8chan_qresearch",
     "link": "https://8ch.net//qresearch/res/279266.html#279710"
+  },
+  {
+    "id": "279835",
+    "userId": "7b5b43",
+    "timestamp": 1517879213,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": "Can you read the message?\nSOTU.\nBlack Caucus phone.\nNot sure if civilian tech can capture @ that distance.\nThese people are LITERALLY MORONS.\nQ\n",
+    "images": [],
+    "threadId": "279266",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/279266.html#279835"
+  },
+  {
+    "id": "279886",
+    "userId": "7b5b43",
+    "timestamp": 1517879409,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>279870\nCenter.\nQ\n",
+    "images": [],
+    "threadId": "279266",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/279266.html#279886",
+    "references": [
+      {
+        "id": "279870",
+        "userId": "ecb400",
+        "timestamp": 1517879354,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>279835\nDefinitely not the Candy Crush phone.\n",
+        "images": [
+          {
+            "url": "https://media.8ch.net/file_store/0da45feb3a36a1ed4d1dd5e1c1997e565d0b70d3b823b4d8d5eb23841e2d6971.jpg",
+            "filename": "sotu.phones.candy_.crush_.jpg"
+          }
+        ],
+        "threadId": "279266",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/279266.html#279870",
+        "references": [
+          {
+            "id": "279835",
+            "userId": "7b5b43",
+            "timestamp": 1517879213,
+            "subject": null,
+            "name": "Q",
+            "email": null,
+            "trip": "!UW.yye1fxo",
+            "text": "Can you read the message?\nSOTU.\nBlack Caucus phone.\nNot sure if civilian tech can capture @ that distance.\nThese people are LITERALLY MORONS.\nQ\n",
+            "images": [],
+            "threadId": "279266",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/279266.html#279835"
+          }
+        ]
+      }
+    ]
   }
 ]
