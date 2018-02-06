@@ -2760,5 +2760,51 @@
     "threadId": "283115",
     "source": "8chan_qresearch",
     "link": "https://8ch.net//qresearch/res/283115.html#283394"
+  },
+  {
+    "id": "283537",
+    "userId": "975911",
+    "timestamp": 1517899590,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>283468\nBuild timeline.\nAS 187.\nHRC investigation pivot points.\nJC dismiss letter.\n#2.\nPS.\nWL comms.\nQ\n",
+    "images": [],
+    "threadId": "283115",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/283115.html#283537",
+    "references": [
+      {
+        "id": "283468",
+        "userId": "1c46f1",
+        "timestamp": 1517899264,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>283394\nLynch offered a SC position if Hillary got through?\n",
+        "images": [],
+        "threadId": "283115",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/283115.html#283468",
+        "references": [
+          {
+            "id": "283394",
+            "userId": "975911",
+            "timestamp": 1517898890,
+            "subject": null,
+            "name": "Q",
+            "email": null,
+            "trip": "!UW.yye1fxo",
+            "text": "Public interest [keep high].\nU1 FBI informant.\nAWAN/DWS/Paki intel/MB.\nTarmac meeting [SC/LL deal &gt; AS 187].\nQ\n",
+            "images": [],
+            "threadId": "283115",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/283115.html#283394"
+          }
+        ]
+      }
+    ]
   }
 ]
