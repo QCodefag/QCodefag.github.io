@@ -2820,5 +2820,56 @@
     "threadId": "283878",
     "source": "8chan_qresearch",
     "link": "https://8ch.net//qresearch/res/283878.html#284004"
+  },
+  {
+    "id": "297530",
+    "userId": "647c68",
+    "timestamp": 1518046772,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>297464\nHeart attacks can be deadly.\nQ\n",
+    "images": [],
+    "threadId": "297395",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/297395.html#297530",
+    "references": [
+      {
+        "id": "297464",
+        "userId": "da6423",
+        "timestamp": 1518046244,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>297354\nBarlow was sometimes held up as a straw man for a kind of naive techno-utopianism that believed that the Internet could solve all of humanity's problems without causing any more. As someone who spent the past 27 years working with him at EFF, I can say that nothing could be further from the truth. Barlow knew that new technology could create and empower evil as much as it could create and empower good. He made a conscious decision to focus on the latter: \"I knew it’s also true that a good way to invent the future is to predict it. So I predicted Utopia, hoping to give Liberty a running start before the laws of Moore and Metcalfe delivered up what Ed Snowden now correctly calls 'turn-key totalitarianism.'”\n\nBarlow’s lasting legacy is that he devoted his life to making the Internet into “a world that all may enter without privilege or prejudice accorded by race, economic power, military force, or station of birth . . . a world where anyone, anywhere may express his or her beliefs, no matter how singular, without fear of being coerced into silence or conformity.”\n\nIn the days and weeks to come, we will be talking and writing more about what a extraordinary role Barlow played for the Internet and the world. And as always, we will continue the work to fulfill his dream.\n\nSource: https:// www.eff.org/deeplinks/2018/02/john-perry-barlow-internet-pioneer-1947-2018\n",
+        "images": [
+          {
+            "url": "https://media.8ch.net/file_store/a057872849d545c961695749a1c2f77ff2f7a55ff5363df4c089e8a13e36ca48.jpg",
+            "filename": "Screenshot_20180207-172345.jpg"
+          },
+          {
+            "url": "https://media.8ch.net/file_store/bc4c25128a41731216fd6d14934d781a98c2e869d318b1ef6017fbfed6d0b63b.jpg",
+            "filename": "Screenshot_20180207-172418.jpg"
+          },
+          {
+            "url": "https://media.8ch.net/file_store/742e4fed9c50842f9976e43faeeb5ee98f98ed7fbeb69747cdec5984552baef1.jpg",
+            "filename": "Screenshot_20180207-172449.jpg"
+          },
+          {
+            "url": "https://media.8ch.net/file_store/18e961086f6dc5ffe41a12cb6b6a0a38a7cb4b3317b0ab7df969c9e89d22de9b.jpg",
+            "filename": "Screenshot_20180207-172634.jpg"
+          },
+          {
+            "url": "https://media.8ch.net/file_store/561a0c6bf29863669c37bd928766f4adf85b7359b053f00be6459f10ca9d43ce.jpg",
+            "filename": "Screenshot_20180207-172656.jpg"
+          }
+        ],
+        "threadId": "297395",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/297395.html#297464"
+      }
+    ]
   }
 ]
