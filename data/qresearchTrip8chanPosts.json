@@ -3327,5 +3327,35 @@
         ]
       }
     ]
+  },
+  {
+    "id": "299568",
+    "userId": "5aa63d",
+    "timestamp": 1518055689,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>299464\nPeople asked for arrests. \nGave one example.\nJust because you can’t see doesn’t mean it’s not ongoing.\nTrust the plan.\nQ\n",
+    "images": [],
+    "threadId": "298889",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/298889.html#299568",
+    "references": [
+      {
+        "id": "299464",
+        "userId": "a5e9c1",
+        "timestamp": 1518055301,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": "This has to mean China did this for/with us somehow.  Q wouldn’t livestream it without some kind of permission.\n",
+        "images": [],
+        "threadId": "298889",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/298889.html#299464"
+      }
+    ]
   }
 ]
