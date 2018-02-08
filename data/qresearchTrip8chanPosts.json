@@ -3212,5 +3212,56 @@
         ]
       }
     ]
+  },
+  {
+    "id": "299350",
+    "userId": "5aa63d",
+    "timestamp": 1518054918,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>299248\nWhat a coincidence.\nRe_read recent drop re: U1/informant.\nWhy did we re-focus energy on this when out of the news cycle?\nCritical thinking.\nQ\n",
+    "images": [],
+    "threadId": "298889",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/298889.html#299350",
+    "references": [
+      {
+        "id": "299248",
+        "userId": "c4cbd0",
+        "timestamp": 1518054539,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>299164\nhttps:// twitter.com/seanhannity/status/961415975626330112\n\n@2046\nFBI informant on Uranium One Breaks Silence Today\nhttps:// saraacarter.com/fbi-informant-uranium-one-breaks-silence-today/\n",
+        "images": [],
+        "threadId": "298889",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/298889.html#299248",
+        "references": [
+          {
+            "id": "299164",
+            "userId": "5aa63d",
+            "timestamp": 1518054308,
+            "subject": null,
+            "name": "Q",
+            "email": null,
+            "trip": "!UW.yye1fxo",
+            "text": "Goodnight.\nQ\n",
+            "images": [
+              {
+                "url": "https://media.8ch.net/file_store/b8448b638f34042e85e835c286298d90fe17bbcaaf3f0f495fb7ebdf8d0f5c06.jpeg",
+                "filename": "CBFE279C-FAD2-403C-A11C-E….jpeg"
+              }
+            ],
+            "threadId": "298889",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/298889.html#299164"
+          }
+        ]
+      }
+    ]
   }
 ]
