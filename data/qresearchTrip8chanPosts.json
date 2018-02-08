@@ -3156,5 +3156,61 @@
     "threadId": "298889",
     "source": "8chan_qresearch",
     "link": "https://8ch.net//qresearch/res/298889.html#299164"
+  },
+  {
+    "id": "299272",
+    "userId": "5aa63d",
+    "timestamp": 1518054658,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>299228\nFocus on substance around outside of window.\nUpon entry …….\nQ\n",
+    "images": [],
+    "threadId": "298889",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/298889.html#299272",
+    "references": [
+      {
+        "id": "299228",
+        "userId": "cd873e",
+        "timestamp": 1518054475,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>299164\nRotated image to match thumbnail orientation.\nSomething protruding from white horizontal stripe 2 floor below the open window.\nSecurity camera?  Light?  Can't tell.\n",
+        "images": [
+          {
+            "url": "https://media.8ch.net/file_store/ed3fa83e3fa3c04c05b09cc3e495ef058fe5882ba83dd545c7df0cec64a55e3f.png",
+            "filename": "ClipboardImage.png"
+          }
+        ],
+        "threadId": "298889",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/298889.html#299228",
+        "references": [
+          {
+            "id": "299164",
+            "userId": "5aa63d",
+            "timestamp": 1518054308,
+            "subject": null,
+            "name": "Q",
+            "email": null,
+            "trip": "!UW.yye1fxo",
+            "text": "Goodnight.\nQ\n",
+            "images": [
+              {
+                "url": "https://media.8ch.net/file_store/b8448b638f34042e85e835c286298d90fe17bbcaaf3f0f495fb7ebdf8d0f5c06.jpeg",
+                "filename": "CBFE279C-FAD2-403C-A11C-E….jpeg"
+              }
+            ],
+            "threadId": "298889",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/298889.html#299164"
+          }
+        ]
+      }
+    ]
   }
 ]
