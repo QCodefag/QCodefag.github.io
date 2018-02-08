@@ -3263,5 +3263,69 @@
         ]
       }
     ]
+  },
+  {
+    "id": "299392",
+    "userId": "5aa63d",
+    "timestamp": 1518055051,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>299351\nWhat a coincidence. \nDo you believe?\nHave faith.\nTHE HUNTERS BECOME THE HUNTED.\nQ\n",
+    "images": [],
+    "threadId": "298889",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/298889.html#299392",
+    "references": [
+      {
+        "id": "299351",
+        "userId": "e37228",
+        "timestamp": 1518054921,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>299177\n",
+        "images": [
+          {
+            "url": "https://media.8ch.net/file_store/9ca96684a685b6cf7dbfe19bafd3defd583d7512f748e937a8f15845674f0f1c.jpg",
+            "filename": "lCrqdmQD.jpg"
+          },
+          {
+            "url": "https://media.8ch.net/file_store/a0d2c1c0f929319030276260442ede847b9c7dac7eb7a88f208f1f68527bca75.jpg",
+            "filename": "X91r1kXO.jpg"
+          }
+        ],
+        "threadId": "298889",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/298889.html#299351",
+        "references": [
+          {
+            "id": "299177",
+            "userId": "c358d5",
+            "timestamp": 1518054338,
+            "subject": null,
+            "name": "Anonymous",
+            "email": null,
+            "trip": null,
+            "text": "Q said we have more than we know/future proves past -→\n=\n+\n++\n+++\netc.\n\nThe \"=\" could be the \"RR tracks\"/GOP train crash/garbage truck blocking tracks(=)/setting up the GOP for death/crash was meant to kill them all (\"red\" as in blood, death) (and the \"=\" also reminds me of the Dem's pin \"Times = Up\")\nand this relates back to portions of earlier Q post No. 640:\n. . . RR = block . . .\n. . . RR = set up . . .\n. . . RR = red . . .\n\n(pic related)\n",
+            "images": [
+              {
+                "url": "https://media.8ch.net/file_store/d3a39b87a7f993c0bc5be9139324e1dcedef2f25dbefc3ea6ad4e9bfea6145f5.png",
+                "filename": "q2.png"
+              },
+              {
+                "url": "https://media.8ch.net/file_store/215333f5943a8922557ea5b259001d3e0404ad917b17671854c3a94c218b6f26.png",
+                "filename": "q1.png"
+              }
+            ],
+            "threadId": "298889",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/298889.html#299177"
+          }
+        ]
+      }
+    ]
   }
 ]
