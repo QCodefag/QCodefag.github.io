@@ -2996,5 +2996,51 @@
         ]
       }
     ]
+  },
+  {
+    "id": "298134",
+    "userId": "eb3537",
+    "timestamp": 1518049749,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>298086\nThank you for visiting the WH.\nQ\n",
+    "images": [],
+    "threadId": "297395",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/297395.html#298134",
+    "references": [
+      {
+        "id": "298086",
+        "userId": "0110e1",
+        "timestamp": 1518049534,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>297666\nMartha M on Fox just said that Nancy must have felt betrayed by Chuck because he gave in on the government shutdown regarding DACA!!!\n",
+        "images": [],
+        "threadId": "297395",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/297395.html#298086",
+        "references": [
+          {
+            "id": "297666",
+            "userId": "62dfce",
+            "timestamp": 1518047643,
+            "subject": null,
+            "name": "Anonymous",
+            "email": null,
+            "trip": null,
+            "text": "Q, you fuckin dick answer me. Ive been tortured since childhood. Pain receptors turned up, induced dreams, energy weapons used to fuck me up, induced audio, induced visuals, mind reading, v2k, forced speech, forced motor movement etc etc. Just give me a why and i will fuck off. Why was i chosen?\n",
+            "images": [],
+            "threadId": "297395",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/297395.html#297666"
+          }
+        ]
+      }
+    ]
   }
 ]
