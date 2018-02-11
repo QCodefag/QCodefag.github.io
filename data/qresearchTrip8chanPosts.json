@@ -3798,5 +3798,51 @@
     "threadId": "336958",
     "source": "8chan_qresearch",
     "link": "https://8ch.net//qresearch/res/336958.html#337096"
+  },
+  {
+    "id": "337117",
+    "userId": "d5f1d4",
+    "timestamp": 1518367997,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>337108\nWhat picture was posted?\nCages full.\nQ\n",
+    "images": [],
+    "threadId": "336958",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/336958.html#337117",
+    "references": [
+      {
+        "id": "337108",
+        "userId": "c7e657",
+        "timestamp": 1518367911,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>337096\n\nOn it, what about Russian detained in Bangkok?\n",
+        "images": [],
+        "threadId": "336958",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/336958.html#337108",
+        "references": [
+          {
+            "id": "337096",
+            "userId": "d5f1d4",
+            "timestamp": 1518367849,
+            "subject": null,
+            "name": "Q",
+            "email": null,
+            "trip": "!UW.yye1fxo",
+            "text": "71 [187].\n[1] targeted.\nDossier.\nU1.\nWould you believe [1] source was used for [2]?\nFind the passenger list.\nWhy [187] if inside Russia?\nNo jurisdiction.\nThink logically.\nSICK!\nQ\n",
+            "images": [],
+            "threadId": "336958",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/336958.html#337096"
+          }
+        ]
+      }
+    ]
   }
 ]
