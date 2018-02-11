@@ -4021,5 +4021,56 @@
     "threadId": "340086",
     "source": "8chan_qresearch",
     "link": "https://8ch.net//qresearch/res/340086.html#340398"
+  },
+  {
+    "id": "340471",
+    "userId": "4c88a3",
+    "timestamp": 1518384010,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>340441\n>>325370 You will cease to exist\nTimestamp.\nLearn.\nQ\n",
+    "images": [],
+    "threadId": "340086",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/340086.html#340471",
+    "references": [
+      {
+        "id": "340441",
+        "userId": "cbc366",
+        "timestamp": 1518383907,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>340398\nQ team refers to this retweet by @Snowden.\n",
+        "images": [
+          {
+            "url": "https://media.8ch.net/file_store/b3c27a9a3fd31539d7380749b76ce11c09f3800823f4615e7c1fc64222370477.png",
+            "filename": "Screen Shot 2018-02-11 at ….png"
+          }
+        ],
+        "threadId": "340086",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/340086.html#340441",
+        "references": [
+          {
+            "id": "340398",
+            "userId": "4c88a3",
+            "timestamp": 1518383789,
+            "subject": null,
+            "name": "Q",
+            "email": null,
+            "trip": "!UW.yye1fxo",
+            "text": "Timestamp:\n@Snowden \"Truth To Power\"\nDrop \"Truth To Power\"\nLearn.\nQ\n",
+            "images": [],
+            "threadId": "340086",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/340086.html#340398"
+          }
+        ]
+      }
+    ]
   }
 ]
