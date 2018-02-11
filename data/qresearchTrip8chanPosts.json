@@ -3907,5 +3907,35 @@
     "threadId": "338555",
     "source": "8chan_qresearch",
     "link": "https://8ch.net//qresearch/res/338555.html#339123"
+  },
+  {
+    "id": "339563",
+    "userId": "ec346b",
+    "timestamp": 1518380630,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>339453\nFuture news will highlight.\nNote \"The Hunt For\" was dropped.\nDetails matter.\nQ\n",
+    "images": [],
+    "threadId": "339346",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/339346.html#339563",
+    "references": [
+      {
+        "id": "339453",
+        "userId": "6c8e3a",
+        "timestamp": 1518380000,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>339123\nI would like to inquire of Q (with highest respect) whether RED_OCTOBER refers to\n1) the fictional submarine whose torpedo homed in on itself and destroyed itself\nor\n2) the [RED OCTOBER] [Красный Oктябрь] cyberespionage malware discovered in October 2012-January 2013.  It operated worldwide for up to 5 years before its discovery.  It sent info ranging from diplomatic secrets to personal information, including from mobile devices.  Red October was termed an advanced cyberespionage campaign intended to target diplomatic, governmental and scientific research organizations worldwide.\nor \n3) Something else\n",
+        "images": [],
+        "threadId": "339346",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/339346.html#339453"
+      }
+    ]
   }
 ]
