@@ -4072,5 +4072,51 @@
         ]
       }
     ]
+  },
+  {
+    "id": "340719",
+    "userId": "4c88a3",
+    "timestamp": 1518384821,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>340695\nCoincidence \"Truth To Power\"?\nCoincidence Barlow?\nLearn.\nWhat if Snowden was still a Clown?\nWhy would it be important he was in Russia?\nLEARN!!!!\nQ\n",
+    "images": [],
+    "threadId": "340086",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/340086.html#340719",
+    "references": [
+      {
+        "id": "340695",
+        "userId": "2ba49f",
+        "timestamp": 1518384732,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>340398\n325370\nYou will cease to exist.\nTruth to power.\nHow’s the bunker these days?\n[14] live \n[Hello]\n[PEOC force failed]\nQ\n",
+        "images": [],
+        "threadId": "340086",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/340086.html#340695",
+        "references": [
+          {
+            "id": "340398",
+            "userId": "4c88a3",
+            "timestamp": 1518383789,
+            "subject": null,
+            "name": "Q",
+            "email": null,
+            "trip": "!UW.yye1fxo",
+            "text": "Timestamp:\n@Snowden \"Truth To Power\"\nDrop \"Truth To Power\"\nLearn.\nQ\n",
+            "images": [],
+            "threadId": "340086",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/340086.html#340398"
+          }
+        ]
+      }
+    ]
   }
 ]
