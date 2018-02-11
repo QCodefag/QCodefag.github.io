@@ -3858,5 +3858,40 @@
     "threadId": "336958",
     "source": "8chan_qresearch",
     "link": "https://8ch.net//qresearch/res/336958.html#337245"
+  },
+  {
+    "id": "338960",
+    "userId": "5bc869",
+    "timestamp": 1518377801,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>338623\nYou have so much more than you know.\nFuture proves past.\nQ\n",
+    "images": [],
+    "threadId": "338555",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/338555.html#338960",
+    "references": [
+      {
+        "id": "338623",
+        "userId": "cf5955",
+        "timestamp": 1518375979,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": "89074\nUnderground massive data center?\nQ\n\nHenderson NV\nWhy is Henderson PD and Nevada DOJ involved in Bangkok hacker case?\n",
+        "images": [
+          {
+            "url": "https://media.8ch.net/file_store/07774d97cdd3cb5ae203e4df3b75122c48af68eb4d5e14fcfeb2a04dc0b52fa0.png",
+            "filename": "ClipboardImage.png"
+          }
+        ],
+        "threadId": "338555",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/338555.html#338623"
+      }
+    ]
   }
 ]
