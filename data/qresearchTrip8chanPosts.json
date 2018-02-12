@@ -4479,5 +4479,51 @@
         ]
       }
     ]
+  },
+  {
+    "id": "343459",
+    "userId": "a9a96c",
+    "timestamp": 1518397297,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>343395\nMax cap.\n[1] other prison being prepped.\nQ\n",
+    "images": [],
+    "threadId": "343221",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/343221.html#343459",
+    "references": [
+      {
+        "id": "343395",
+        "userId": "0b5e70",
+        "timestamp": 1518397109,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>343356\nDon't care about your sentence structure. Just care to know how full GITMO is gonna be?\n",
+        "images": [],
+        "threadId": "343221",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/343221.html#343395",
+        "references": [
+          {
+            "id": "343356",
+            "userId": "a9a96c",
+            "timestamp": 1518396970,
+            "subject": null,
+            "name": "Q",
+            "email": null,
+            "trip": "!UW.yye1fxo",
+            "text": ">>343304\nDo not read into this spelling/structure error.\nHeavy lag/attack ongoing.\nQ\n",
+            "images": [],
+            "threadId": "343221",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/343221.html#343356"
+          }
+        ]
+      }
+    ]
   }
 ]
