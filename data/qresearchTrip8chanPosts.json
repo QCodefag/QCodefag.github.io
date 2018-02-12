@@ -4118,5 +4118,51 @@
         ]
       }
     ]
+  },
+  {
+    "id": "342895",
+    "userId": "540a54",
+    "timestamp": 1518395454,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>342747\nWhat a coincidence.\nThis board has more power &amp; influence than anyone comprehends.\nQ\n",
+    "images": [],
+    "threadId": "342541",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/342541.html#342895",
+    "references": [
+      {
+        "id": "342747",
+        "userId": "3de3d6",
+        "timestamp": 1518394786,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>342714\nsauce\nhttps://  www.wsj.com/articles/experimental-drug-promises-to-kill-the-flu-virus-in-a-day-1518264004\n",
+        "images": [],
+        "threadId": "342541",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/342541.html#342747",
+        "references": [
+          {
+            "id": "342714",
+            "userId": "796b33",
+            "timestamp": 1518394602,
+            "subject": null,
+            "name": "Anonymous",
+            "email": null,
+            "trip": null,
+            "text": "Apparently the release the cure memes are working.. it was announced on Midwest radio, a miracle one day cure for the flu will be released by the cd. In 2018. I’m looking. For sauce on it now.\n",
+            "images": [],
+            "threadId": "342541",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/342541.html#342714"
+          }
+        ]
+      }
+    ]
   }
 ]
