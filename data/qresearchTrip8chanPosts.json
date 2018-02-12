@@ -4525,5 +4525,35 @@
         ]
       }
     ]
+  },
+  {
+    "id": "347137",
+    "userId": "5dacd4",
+    "timestamp": 1518416536,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>346987\n“Here to stay.”\nNo, you’re not.\nQ\n",
+    "images": [],
+    "threadId": "346343",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/346343.html#347137",
+    "references": [
+      {
+        "id": "346987",
+        "userId": "0a27cc",
+        "timestamp": 1518415541,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": "The fact Q brought up Ginsberg and then she landed on CNN the same day front page speaks volumes. We are missing something.\n",
+        "images": [],
+        "threadId": "346343",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/346343.html#346987"
+      }
+    ]
   }
 ]
