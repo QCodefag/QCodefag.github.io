@@ -4569,5 +4569,91 @@
     "threadId": "349535",
     "source": "8chan_qresearch",
     "link": "https://8ch.net//qresearch/res/349535.html#350084"
+  },
+  {
+    "id": "350525",
+    "userId": "94b137",
+    "timestamp": 1518450172,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>350504\nFind the link.\nLook around.\nWhat does it signify?\nQ\n",
+    "images": [
+      {
+        "url": "https://media.8ch.net/file_store/cf3df150312daf57e78936f983fbc527f2e058c6b13e40d90607face2f873184.jpg",
+        "filename": "Unknown.jpg"
+      }
+    ],
+    "threadId": "350331",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/350331.html#350525",
+    "references": [
+      {
+        "id": "350504",
+        "userId": "8cf1f5",
+        "timestamp": 1518450057,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": "I wonder why BHO is depicted sitting in a bush\n",
+        "images": [],
+        "threadId": "350331",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/350331.html#350504"
+      }
+    ]
+  },
+  {
+    "id": "350551",
+    "userId": "94b137",
+    "timestamp": 1518450264,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>350525\nWhat are they sitting on?\nPerfectly lined up?\nWhy?\nLearn.\nQ\n",
+    "images": [],
+    "threadId": "350331",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/350331.html#350551",
+    "references": [
+      {
+        "id": "350525",
+        "userId": "94b137",
+        "timestamp": 1518450172,
+        "subject": null,
+        "name": "Q",
+        "email": null,
+        "trip": "!UW.yye1fxo",
+        "text": ">>350504\nFind the link.\nLook around.\nWhat does it signify?\nQ\n",
+        "images": [
+          {
+            "url": "https://media.8ch.net/file_store/cf3df150312daf57e78936f983fbc527f2e058c6b13e40d90607face2f873184.jpg",
+            "filename": "Unknown.jpg"
+          }
+        ],
+        "threadId": "350331",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/350331.html#350525",
+        "references": [
+          {
+            "id": "350504",
+            "userId": "8cf1f5",
+            "timestamp": 1518450057,
+            "subject": null,
+            "name": "Anonymous",
+            "email": null,
+            "trip": null,
+            "text": "I wonder why BHO is depicted sitting in a bush\n",
+            "images": [],
+            "threadId": "350331",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/350331.html#350504"
+          }
+        ]
+      }
+    ]
   }
 ]
