@@ -4655,5 +4655,67 @@
         ]
       }
     ]
+  },
+  {
+    "id": "350607",
+    "userId": "94b137",
+    "timestamp": 1518450477,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>350576\nhttps:// en.wikipedia.org/wiki/Mike_Wallace\nYou are not looking close enough.\nQ\n",
+    "images": [],
+    "threadId": "350331",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/350331.html#350607",
+    "references": [
+      {
+        "id": "350576",
+        "userId": "90db37",
+        "timestamp": 1518450363,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>350546\nChris Wallace looks clean as far as those descriptors used by Q are concerned. Looking into Matthews now\n'\n",
+        "images": [],
+        "threadId": "350331",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/350331.html#350576",
+        "references": [
+          {
+            "id": "350546",
+            "userId": "510189",
+            "timestamp": 1518450248,
+            "subject": null,
+            "name": "Anonymous",
+            "email": null,
+            "trip": null,
+            "text": ">>350510\nWallace\n",
+            "images": [],
+            "threadId": "350331",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/350331.html#350546",
+            "references": [
+              {
+                "id": "350510",
+                "userId": "a1e171",
+                "timestamp": 1518450104,
+                "subject": null,
+                "name": "Anonymous",
+                "email": null,
+                "trip": null,
+                "text": ">>350084\n\nMika, Meghan McCain, Anderson Cooper (Vanderbilt), Chris Cuomo, add on\n",
+                "images": [],
+                "threadId": "350331",
+                "source": "8chan_qresearch",
+                "link": "https://8ch.net//qresearch/res/350331.html#350510"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]
