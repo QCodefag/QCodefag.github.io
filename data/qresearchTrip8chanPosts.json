@@ -4368,7 +4368,23 @@
     "images": [],
     "threadId": "343221",
     "source": "8chan_qresearch",
-    "link": "https://8ch.net//qresearch/res/343221.html#343356"
+    "link": "https://8ch.net//qresearch/res/343221.html#343356",
+    "references": [
+      {
+        "id": "343304",
+        "userId": "540a54",
+        "timestamp": 1518396764,
+        "subject": null,
+        "name": "Q",
+        "email": null,
+        "trip": "!UW.yye1fxo",
+        "text": ">>343156\nUnderstand one simple fact - the US is connected to the rest of the world. \nKnowing that, understand, by default, if certain intel is released it would cause a WW/mass suffering.\nWe share the idea of open source but value life and must make decisions base decisions on outcomes and containability.\nQ\n",
+        "images": [],
+        "threadId": "342541",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/342541.html#343304"
+      }
+    ]
   },
   {
     "id": "343304",
@@ -4893,7 +4909,32 @@
     "images": [],
     "threadId": "382018",
     "source": "8chan_qresearch",
-    "link": "https://8ch.net//qresearch/res/382018.html#382225"
+    "link": "https://8ch.net//qresearch/res/382018.html#382225",
+    "references": [
+      {
+        "id": "382122",
+        "userId": "7c458e",
+        "timestamp": 1518674695,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": "I posted this a week ago and it never made traction. See Apache circled.\n",
+        "images": [
+          {
+            "url": "https://media.8ch.net/file_store/b8e0aa8020312908eaf042db5f503442144aeb468f2001628bbfd7349c9538fb.jpeg",
+            "filename": "F0704A26-CA59-40E8-9285-5….jpeg"
+          },
+          {
+            "url": "https://media.8ch.net/file_store/b43397be6aa8eb25801a93ed00e5de5df5110c7a63066e633e9d5de0fed2d112.jpeg",
+            "filename": "ABD8260F-EBBB-4C18-A9AE-8….jpeg"
+          }
+        ],
+        "threadId": "381169",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/381169.html#382122"
+      }
+    ]
   },
   {
     "id": "382435",
