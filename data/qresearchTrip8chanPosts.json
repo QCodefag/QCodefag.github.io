@@ -4866,5 +4866,293 @@
     "threadId": "360029",
     "source": "8chan_qresearch",
     "link": "https://8ch.net//qresearch/res/360029.html#360913"
+  },
+  {
+    "id": "382161",
+    "userId": "276796",
+    "timestamp": 1518674921,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": "Watch the water.\nQ\n",
+    "images": [],
+    "threadId": "382018",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/382018.html#382161"
+  },
+  {
+    "id": "382225",
+    "userId": "276796",
+    "timestamp": 1518675198,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>382122\nGreat work, Anon.\nQ\n",
+    "images": [],
+    "threadId": "382018",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/382018.html#382225"
+  },
+  {
+    "id": "382435",
+    "userId": "276796",
+    "timestamp": 1518676023,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>382197\nYou are a strong Patriot.\nDo not give in - fight, fight, fight.\nYou have more friends than you can imagine.\nUNITED WE STAND.\nGOD BLESS,\nQ\n",
+    "images": [],
+    "threadId": "382018",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/382018.html#382435",
+    "references": [
+      {
+        "id": "382197",
+        "userId": "59360f",
+        "timestamp": 1518675072,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>382161\nI almost killed myself doin Heroin and Painkillers. then you came around… I started realizing I had a PURPOSE! I literally got sober for this shit. THANK YOU Q. My Mother hasnt seen me sober in over 10 years. \nWE ARE WITH YOU.\nWE WILL NOT GIVE UP.\n-ff\nI LOVE IT. \nWE ARE RESTORING THE REPUBLIC.\nEVERYDAY WE STRIKE.\nEVERYDAY WE WIN.\nWE ARE WINNING. BIGLY.\nCANNOT SAY THANK YOU ENOUGH.\n",
+        "images": [],
+        "threadId": "382018",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/382018.html#382197",
+        "references": [
+          {
+            "id": "382161",
+            "userId": "276796",
+            "timestamp": 1518674921,
+            "subject": null,
+            "name": "Q",
+            "email": null,
+            "trip": "!UW.yye1fxo",
+            "text": "Watch the water.\nQ\n",
+            "images": [],
+            "threadId": "382018",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/382018.html#382161"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "381597",
+    "userId": "925f8f",
+    "timestamp": 1518672522,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>381564\nWas the point proven?\nThis board has more power than you can imagine.\nQ\n",
+    "images": [],
+    "threadId": "381169",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/381169.html#381597",
+    "references": [
+      {
+        "id": "381564",
+        "userId": "de4323",
+        "timestamp": 1518672168,
+        "subject": null,
+        "name": "Anonymous",
+        "email": null,
+        "trip": null,
+        "text": ">>381541\nThe Clinton's didn't tweet about it until after Q posted. Check the time stamps.\n",
+        "images": [],
+        "threadId": "381169",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/381169.html#381564",
+        "references": [
+          {
+            "id": "381541",
+            "userId": "0fe7b5",
+            "timestamp": 1518672058,
+            "subject": null,
+            "name": "Anonymous",
+            "email": null,
+            "trip": null,
+            "text": "Bill and Hillary have both tweeted about shooting. Hillary’s was a retweet, but it still counts. What point was Q trying to make?\n",
+            "images": [],
+            "threadId": "381169",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/381169.html#381541"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "381653",
+    "userId": "925f8f",
+    "timestamp": 1518672741,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>381597\nThey are ALWAYS watching.\nWatch the news re: new drugs coming out [flu/dirt/next?].\nWhat a coincidence. \nQ\n",
+    "images": [],
+    "threadId": "381169",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/381169.html#381653",
+    "references": [
+      {
+        "id": "381597",
+        "userId": "925f8f",
+        "timestamp": 1518672522,
+        "subject": null,
+        "name": "Q",
+        "email": null,
+        "trip": "!UW.yye1fxo",
+        "text": ">>381564\nWas the point proven?\nThis board has more power than you can imagine.\nQ\n",
+        "images": [],
+        "threadId": "381169",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/381169.html#381597",
+        "references": [
+          {
+            "id": "381564",
+            "userId": "de4323",
+            "timestamp": 1518672168,
+            "subject": null,
+            "name": "Anonymous",
+            "email": null,
+            "trip": null,
+            "text": ">>381541\nThe Clinton's didn't tweet about it until after Q posted. Check the time stamps.\n",
+            "images": [],
+            "threadId": "381169",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/381169.html#381564",
+            "references": [
+              {
+                "id": "381541",
+                "userId": "0fe7b5",
+                "timestamp": 1518672058,
+                "subject": null,
+                "name": "Anonymous",
+                "email": null,
+                "trip": null,
+                "text": "Bill and Hillary have both tweeted about shooting. Hillary’s was a retweet, but it still counts. What point was Q trying to make?\n",
+                "images": [],
+                "threadId": "381169",
+                "source": "8chan_qresearch",
+                "link": "https://8ch.net//qresearch/res/381169.html#381541"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "381743",
+    "userId": "925f8f",
+    "timestamp": 1518673087,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": ">>381653\nDid Hussein receive a letter in the mail w/ white powder? \nWhat a coincidence. \nMessage received.\nResponse forthcoming.\nQ\n",
+    "images": [],
+    "threadId": "381169",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/381169.html#381743",
+    "references": [
+      {
+        "id": "381653",
+        "userId": "925f8f",
+        "timestamp": 1518672741,
+        "subject": null,
+        "name": "Q",
+        "email": null,
+        "trip": "!UW.yye1fxo",
+        "text": ">>381597\nThey are ALWAYS watching.\nWatch the news re: new drugs coming out [flu/dirt/next?].\nWhat a coincidence. \nQ\n",
+        "images": [],
+        "threadId": "381169",
+        "source": "8chan_qresearch",
+        "link": "https://8ch.net//qresearch/res/381169.html#381653",
+        "references": [
+          {
+            "id": "381597",
+            "userId": "925f8f",
+            "timestamp": 1518672522,
+            "subject": null,
+            "name": "Q",
+            "email": null,
+            "trip": "!UW.yye1fxo",
+            "text": ">>381564\nWas the point proven?\nThis board has more power than you can imagine.\nQ\n",
+            "images": [],
+            "threadId": "381169",
+            "source": "8chan_qresearch",
+            "link": "https://8ch.net//qresearch/res/381169.html#381597",
+            "references": [
+              {
+                "id": "381564",
+                "userId": "de4323",
+                "timestamp": 1518672168,
+                "subject": null,
+                "name": "Anonymous",
+                "email": null,
+                "trip": null,
+                "text": ">>381541\nThe Clinton's didn't tweet about it until after Q posted. Check the time stamps.\n",
+                "images": [],
+                "threadId": "381169",
+                "source": "8chan_qresearch",
+                "link": "https://8ch.net//qresearch/res/381169.html#381564",
+                "references": [
+                  {
+                    "id": "381541",
+                    "userId": "0fe7b5",
+                    "timestamp": 1518672058,
+                    "subject": null,
+                    "name": "Anonymous",
+                    "email": null,
+                    "trip": null,
+                    "text": "Bill and Hillary have both tweeted about shooting. Hillary’s was a retweet, but it still counts. What point was Q trying to make?\n",
+                    "images": [],
+                    "threadId": "381169",
+                    "source": "8chan_qresearch",
+                    "link": "https://8ch.net//qresearch/res/381169.html#381541"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "381944",
+    "userId": "925f8f",
+    "timestamp": 1518673941,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": "You are missing the connections.\nContinue to build the MAP.\nMAP provides the KEY.\nKEY spreads the TRUTH. \nTRUTH shines LIGHT.\nLIGHT saves HUMANITY. \nFuture proves past.\nTrust the plan.\nQ\n",
+    "images": [],
+    "threadId": "381169",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/381169.html#381944"
+  },
+  {
+    "id": "378936",
+    "userId": "0245cc",
+    "timestamp": 1518658460,
+    "subject": null,
+    "name": "Q",
+    "email": null,
+    "trip": "!UW.yye1fxo",
+    "text": "Where are the tweets from HRC, BC, CC, Hussein, others re: the shooting today?\nDo you believe in EVIL?\nMake no mistake, they will all PAY THE PRICE. \nQ\n",
+    "images": [],
+    "threadId": "378079",
+    "source": "8chan_qresearch",
+    "link": "https://8ch.net//qresearch/res/378079.html#378936"
   }
 ]
