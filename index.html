@@ -8,85 +8,58 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="twitter.css">
-  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
-  <script src="https://platform.twitter.com/widgets.js"></script>
-  <script src="lib/markdown-it.min.js"></script>
-
   <link rel="stylesheet" href="core.css">
   <link rel="stylesheet" href="index.css">
-  <script src="data/legend.js"></script>
-  <script src="core.js"></script>
-  <script src="index.js"></script>
+  <style>
+    body {
+      height: auto;
+      overflow-y: auto;
+    }
+    body > * {
+      max-width: 500px;
+      margin: 20px auto;
+      margin-bottom: 0;
+    }
+    * {
+      text-align: center;
+    }
+    p {
+      text-align: left;
+    }
+  </style>
 </head>
 
 <body>
-  <header class="row">
-    <div>
-      <input type="search" placeholder="type to filter..." list="hints">
+  <article>
+    <h1>The Site has Moved!</h1>
+    <p>The Github team kindly but urgently asked me to move this site from their hosting platform.</p>
+    <p>This site attracted <strong>TOO MANY VISITORS</strong> and consumed more than <strong>600 times</strong> the amount of resources
+      that Github normally allows.</p>
+    <p>That's why this site has migrated to another platform with a brand new beautiful url:</p>
+    <h2><a href="http://qanonposts.com/">qanonposts.com</a></h2>
+  </article>
 
-      <datalist id="hints"></datalist>
-      <span id="count"></span>
-    </div>
+  <div>
     <div>
-      <button onclick="toggleDialog('donate')">🎅</button>
-    </div>
-    <div class="stretch">
-      <form id="submitChanges" class="row space" hidden>
-        <span id="editSummary"><strong></strong> change</span>
-        <input type="text" name="accessCode" placeholder="access token">
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-    <div class="row hide-mobile">
-      <a href="news.html">Q related news</a>
-      <iframe data-aa='818763' src='//ad.a-ads.com/818763?size=120x60' scrolling='no' style='width:120px; height:60px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>
-    </div>
-  </header>
-  <div class="row">
-    <main class="stretch"></main>
-  </div>
-
-  <div id="fixed-bottom">
-    <button onclick="checkForNewPosts()">↻</button>
-    <span id="notification" hidden></span>
-  </div>
-
-  <div class="dialog" id="donate">
-    <div>
-      <button onclick="toggleDialog('donate')" class="close icon">X</button>
-      <p>If you'd like to buy me a beer or a little Christmas present for my effort, you can donate some Bitcoins to the following
-        address:
+      <p>If you'd like to help with covering the maintenance costs of the new server, or give a little "thank you"
+        for my work, you can donate some Bitcoins to the following address:
       </p>
-      <p>
+      <h3>
         <code>1JExPvzpR6WWLQMsPZSYhuq1Cox9kz33XS</code>
-      </p>
-      <p>
+      </h3>
+      <div>
         <img src="qrBTC.png" width="370" height="370" alt="QR code">
-      </p>
+      </div>
 
-      <pre>
+    </div>
+    <pre>
 🌟🌅🌅🌅🌟🌅🌅🌟🌟🌅🌟🌅🌟🌅🌅🌟🌅🌅🌟🌅🌅🌟🌟
 🌟🌟🌅🌟🌟🌅🌟🌅🌟🌅🌟🌅🌟🌅🌟🌅🌟🌅🌟🌅🌟🌅🌟
 🌟🌟🌅🌟🌟🌅🌅🌟🌟🌅🌟🌅🌟🌅🌟🌅🌟🌅🌟🌅🌅🌟🌟
 🌟🌟🌅🌟🌟🌅🌟🌅🌟🌅🌟🌅🌟🌅🌟🌟🌟🌅🌟🌅🌟🌟🌟
 🌟🌟🌅🌟🌟🌅🌟🌅🌟🌅🌅🌅🌟🌅🌟🌟🌟🌅🌟🌅🌟🌟🌟
-  </pre>
-    </div>
+    </pre>
   </div>
 
-  <div class="dialog" id="story">
-    <div>
-      <button onclick="toggleDialog('story')" class="close icon">close</button>
-      <header></header>
-      <div class="container">
-
-      </div>
-
-    </div>
-  </div>
-
-
-  <div class="overlay" onclick="toggleDialog()"></div>
 </body>
 </html>
